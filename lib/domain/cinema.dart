@@ -11,6 +11,4 @@ class Film{
   Film.fromJson(Map<String, dynamic> json){
 
   }
-
-
 }

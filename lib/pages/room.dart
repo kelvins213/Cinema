@@ -180,23 +180,22 @@ class _CinemaRoom extends State<CinemaRoom>{
   }
 
   onPressed(){
-    var count = 0;
-    for (Color color in colors) {
-      if (color == const Color(0xFFDC0000)) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context){return CinemaFood();}),
-        );
-        break;
-      } else {
-        count++;
+    List<int> chairsIndex = <int>[];
+
+    for (var i = 0; i < colors.length; i++) {
+      if (colors[i] == const Color(0xFFDC0000)) {
+        chairsIndex.add(i);
       }
     }
 
-    if (count == colors.length) {
+    if (chairsIndex.isEmpty){
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context){return CinemaFood(chairsBooked: chairsIndex);}),
+      );
     }
-
   }
 
   buildText({required String text, required double size}){
