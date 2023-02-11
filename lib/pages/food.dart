@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class CinemaFood extends StatefulWidget {
 
   final List<int> chairsBooked;
+  late int totalPrice;
 
-  const CinemaFood({
+  CinemaFood({
     Key? key,
     required this.chairsBooked,
+    required this.totalPrice,
   }) : super(key: key);
 
    @override
@@ -22,15 +24,16 @@ class _CinemaFood extends State<CinemaFood>{
   }
 
   List<int> get chairs => widget.chairsBooked;
-  int chairPrice = 7;
-  int popcornPrice = 0;
-  int sodaPrice = 0;
-  int totalPrice = 0;
+  int get  totalPrice => widget.totalPrice;
+
+  static int chairPrice = 7;
+  static int totalPopcornPrice = 0;
+  static int totalSodaPrice = 0;
+  static int popPrice = 5;
+  static int sodaPrice = 2;
 
   Widget build(BuildContext context){
 
-    chairPrice = chairPrice * chairs.length;
-    totalPrice = totalPrice + chairPrice;
 
     return Scaffold(
       backgroundColor: const Color(0xFF00092C),
@@ -104,7 +107,7 @@ class _CinemaFood extends State<CinemaFood>{
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF00092C),
                             ),
-                            onPressed: () => onPressed(value: - 5, type: "popcorn", operation: "-"),
+                            onPressed: () => onPressed(value: - popPrice, type: "popcorn", operation: "-"),
                             child: const Icon(
                                 Icons.remove
                             ),
@@ -113,7 +116,7 @@ class _CinemaFood extends State<CinemaFood>{
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF00092C),
                             ),
-                            onPressed: () => onPressed(value: 5, type: "popcorn", operation: "+"),
+                            onPressed: () => onPressed(value: popPrice, type: "popcorn", operation: "+"),
                             child: const Icon(
                                 Icons.add
                             ),
@@ -127,7 +130,7 @@ class _CinemaFood extends State<CinemaFood>{
                                 children: [
                                   const Icon(Icons.monetization_on),
                                   Text(
-                                    '$popcornPrice',
+                                    '$totalPopcornPrice',
                                     style: const TextStyle(
                                       fontSize: 24,
                                       color: Color(0xFF000000),
@@ -153,7 +156,7 @@ class _CinemaFood extends State<CinemaFood>{
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF00092C),
                             ),
-                            onPressed: () => onPressed(value: - 2, type: "soda", operation: "-"),
+                            onPressed: () => onPressed(value: - sodaPrice, type: "soda", operation: "-"),
                             child: const Icon(
                               Icons.remove,
                             ),
@@ -162,7 +165,7 @@ class _CinemaFood extends State<CinemaFood>{
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF00092C),
                             ),
-                            onPressed: () => onPressed(value: 2, type: "soda", operation: "+"),
+                            onPressed: () => onPressed(value: sodaPrice, type: "soda", operation: "+"),
                             child: const Icon(
                                 Icons.add
                             ),
@@ -175,7 +178,7 @@ class _CinemaFood extends State<CinemaFood>{
                                 children: [
                                   const Icon(Icons.monetization_on),
                                   Text(
-                                    '$sodaPrice',
+                                    '$totalSodaPrice',
                                     style: const TextStyle(
                                       fontSize: 24,
                                       color: Color(0xFF000000),
@@ -238,23 +241,24 @@ class _CinemaFood extends State<CinemaFood>{
     setState(() {
       if (type == "popcorn") {
         if (operation == "+") {
-          popcornPrice = popcornPrice + value;
+          totalPopcornPrice = totalPopcornPrice + value;
         } else {
-          if (popcornPrice >= 5) {
-            popcornPrice = popcornPrice + value;
+          if (totalPopcornPrice >= popPrice) {
+            totalPopcornPrice = totalPopcornPrice + value;
           }
         }
       } else {
         if (operation == "+") {
-          sodaPrice = sodaPrice + value;
+          totalSodaPrice = totalSodaPrice + value;
         } else {
-          if (sodaPrice >= 2) {
-            sodaPrice = sodaPrice + value;
+          if (totalSodaPrice >= sodaPrice) {
+            totalSodaPrice = totalSodaPrice + value;
           }
         }
       }
+      widget.totalPrice = (totalPopcornPrice + totalSodaPrice + (chairPrice * chairs.length));
 
-      totalPrice = popcornPrice + sodaPrice;
+      print(totalPrice);
     });
   }
 }

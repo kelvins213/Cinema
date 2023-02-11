@@ -17,6 +17,8 @@ class CinemaRoom extends StatefulWidget {
 
 class _CinemaRoom extends State<CinemaRoom>{
 
+  final int chairPrice = 7;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -188,7 +190,7 @@ class _CinemaRoom extends State<CinemaRoom>{
     } else {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context){return CinemaFood(chairsBooked: chairsIndex);}),
+        MaterialPageRoute(builder: (context){return CinemaFood(chairsBooked: chairsIndex, totalPrice: chairsIndex.length * chairPrice,);}),
       );
     }
   }
