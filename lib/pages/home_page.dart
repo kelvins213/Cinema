@@ -28,11 +28,11 @@ class _CinemaHomePage extends State<CinemaHomePage>{
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Booking Stuff",
                       style: TextStyle(
                         fontSize: 24,
-                        color: const Color(0xFFEEEEEE),
+                        color: Color(0xFFEEEEEE),
                       ),
                     ),
                   ],
@@ -56,7 +56,7 @@ class _CinemaHomePage extends State<CinemaHomePage>{
       ),
       body: SafeArea(
         child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
           ),
           itemBuilder: (context, index){

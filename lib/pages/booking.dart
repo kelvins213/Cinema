@@ -36,13 +36,11 @@ class _BookingFilm extends State<BookingFilm> {
               child: Column(
                 children: [
                   Container(
-                    //color: Colors.green,
                     height: 600,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          //color: Colors.yellow,
                           height: 600,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -62,10 +60,10 @@ class _BookingFilm extends State<BookingFilm> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 42),
+                  const SizedBox(height: 42),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: const Color(0xFF4C6793),
+                      backgroundColor: const Color(0xFF4C6793),
                     ),
                       onPressed: onPressed,
                       child: buildText(text: "Book", size: 24),
@@ -107,7 +105,7 @@ class _BookingFilm extends State<BookingFilm> {
       child: Row(
         children: [
           buildText(text: text, size: size),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Icon(icon, size: size),
         ],
       ),

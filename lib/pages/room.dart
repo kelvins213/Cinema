@@ -1,7 +1,5 @@
-
 import 'package:cinema/domain/cinema.dart';
 import 'package:cinema/pages/food.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CinemaRoom extends StatefulWidget {
@@ -27,13 +25,11 @@ class _CinemaRoom extends State<CinemaRoom>{
 
   dynamic snackBar = SnackBar(
     backgroundColor: const Color(0xFFDC0000),
-    content: Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("You did not choose any seat", style: TextStyle(fontSize: 18),)
-        ],
-      ),
+    content: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text("You did not choose any seat", style: TextStyle(fontSize: 18),)
+      ],
     ),
   );
 
@@ -74,7 +70,7 @@ class _CinemaRoom extends State<CinemaRoom>{
                           width: 300,
                           height: 30,
                           child: Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Color(0xFF4C6793),
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(360),
@@ -83,7 +79,7 @@ class _CinemaRoom extends State<CinemaRoom>{
                                 bottomRight: Radius.circular(40),
                               ),
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.videocam
                             ),
                           ),
@@ -91,7 +87,7 @@ class _CinemaRoom extends State<CinemaRoom>{
                         GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 8,
                           ),
                           itemBuilder: (context, index){
@@ -99,7 +95,7 @@ class _CinemaRoom extends State<CinemaRoom>{
                               onTap: () => onTap(chairIndex: index),
                               child: Card(
                                 color: colors[index],
-                                child: Icon(
+                                child: const Icon(
                                   Icons.event_seat
                                 ),
                               ),
@@ -110,7 +106,7 @@ class _CinemaRoom extends State<CinemaRoom>{
                       ],
                     ),
                   ),
-                  SizedBox(height: 24,),
+                  const SizedBox(height: 24,),
                   Container(
                     height: 100,
                     child: Row(
@@ -123,8 +119,8 @@ class _CinemaRoom extends State<CinemaRoom>{
                               width: 200,
                               child: Row(
                                 children: [
-                                  Card(
-                                    color: const Color(0xFF4C6793),
+                                  const Card(
+                                    color: Color(0xFF4C6793),
                                     child: Icon(
                                         Icons.event_seat
                                     ),
@@ -137,8 +133,8 @@ class _CinemaRoom extends State<CinemaRoom>{
                               width: 200,
                               child: Row(
                                 children: [
-                                  Card(
-                                    color: const Color(0xFFDC0000),
+                                  const Card(
+                                    color: Color(0xFFDC0000),
                                     child: Icon(
                                         Icons.event_seat
                                     ),
@@ -154,7 +150,7 @@ class _CinemaRoom extends State<CinemaRoom>{
                             primary: const Color(0xFF03C988),
                           ),
                           onPressed: onPressed,
-                          child: Icon(Icons.navigate_next, size: 50,),
+                          child: const Icon(Icons.navigate_next, size: 50,),
                         ),
                       ],
                     ),
@@ -162,7 +158,6 @@ class _CinemaRoom extends State<CinemaRoom>{
                 ],
               ),
             ),
-
           ],
         ),
       ),
@@ -204,9 +199,8 @@ class _CinemaRoom extends State<CinemaRoom>{
       textAlign: TextAlign.justify,
       style: TextStyle(
         fontSize: size,
-        color: Colors.white,
+        color: const Color(0xFFEEEEEE),
       ),
     );
   }
-
 }
