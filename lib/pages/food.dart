@@ -36,10 +36,11 @@ class _CinemaFood extends State<CinemaFood>{
 
   Widget build(BuildContext context){
 
+    //0xFF4C6793
     return Scaffold(
-      backgroundColor: const Color(0xFF00092C),
+      backgroundColor: const Color(0xFF4C6793),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF000000),
+        backgroundColor: const Color(0xFF00092C),
         centerTitle: true,
         title: buildText(text: "Food", size: 24, color: const Color(0xFFEEEEEE)),
       ),
@@ -294,18 +295,19 @@ class _CinemaFood extends State<CinemaFood>{
         barrierDismissible: false,
         builder: (context){
           return AlertDialog(
-            title: buildText(text: "Your entry is granted!", size: 24, color: const Color(0xFF000000)),
+            backgroundColor: const Color(0xFF4C6793),
+            title: buildText(text: "Your entry is granted!", size: 24, color: const Color(0xFFEEEEEE)),
             content: SizedBox(
               height: 180,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Icon(
-                    Icons.check_circle,
+                    Icons.check,
                     size: 152,
                     color: Color(0xFF03C988),
                   ),
-                  buildText(text: "Total Price: ${chairPrice * chairs.length + totalPopcornPrice + totalSodaPrice} dolars", size: 24, color: const Color(0xFF000000))
+                  buildText(text: "Total Price: ${chairPrice * chairs.length + totalPopcornPrice + totalSodaPrice} dolars", size: 24, color: const Color(0xFFEEEEEE))
                 ],
               ),
             ),

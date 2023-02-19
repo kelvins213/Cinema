@@ -52,7 +52,7 @@ class _CinemaRoom extends State<CinemaRoom>{
     return Scaffold(
       backgroundColor: const Color(0xFF00092C),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF000000),
+        backgroundColor: const Color(0xFF4C6793),
         centerTitle: true,
         title: buildText(text: "Cinema Room", size: 24),
       ),
