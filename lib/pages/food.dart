@@ -1,9 +1,11 @@
+import 'package:cinema/pages/home_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CinemaFood extends StatefulWidget {
 
   final List<int> chairsBooked;
-  late int totalPrice;
+  int totalPrice;
 
   CinemaFood({
     Key? key,
@@ -26,14 +28,13 @@ class _CinemaFood extends State<CinemaFood>{
   List<int> get chairs => widget.chairsBooked;
   int get  totalPrice => widget.totalPrice;
 
-  static int chairPrice = 7;
-  static int totalPopcornPrice = 0;
-  static int totalSodaPrice = 0;
-  static int popPrice = 5;
-  static int sodaPrice = 2;
+  int chairPrice = 7;
+  int totalPopcornPrice = 0;
+  int totalSodaPrice = 0;
+  int popPrice = 5;
+  int sodaPrice = 2;
 
   Widget build(BuildContext context){
-
 
     return Scaffold(
       backgroundColor: const Color(0xFF00092C),
@@ -220,6 +221,31 @@ class _CinemaFood extends State<CinemaFood>{
                 ),
               ),
             ),
+            SizedBox(height: 12),
+            Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5.0)
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                    onPressed: (){
+                      showConfirmation();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF03C988),
+                    ),
+                    child: const Icon(
+                      Icons.check_circle,
+                      size: 50,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -260,5 +286,66 @@ class _CinemaFood extends State<CinemaFood>{
 
       print(totalPrice);
     });
+  }
+
+  showConfirmation(){
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context){
+          return AlertDialog(
+            title: buildText(text: "Your entry is granted!", size: 24, color: const Color(0xFF000000)),
+            content: SizedBox(
+              height: 180,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Icon(
+                    Icons.check_circle,
+                    size: 152,
+                    color: Color(0xFF03C988),
+                  ),
+                  buildText(text: "Total Price: ${chairPrice * chairs.length + totalPopcornPrice + totalSodaPrice} dolars", size: 24, color: const Color(0xFF000000))
+                ],
+              ),
+            ),
+            actions: [
+              Container(
+                height: 50,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                      child: buildText(text: "Cancel", size: 24, color: const Color(0xFFEEEEEE)),
+                      onPressed: (){
+                        return Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFDC0000),
+                      ),
+                    ),
+                    ElevatedButton(
+                      child: buildText(text: "Ok", size: 24, color: const Color(0xFFEEEEEE)),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context){
+                                return const CinemaHomePage();
+                              }
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF03C988),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          );
+        },
+    );
   }
 }
