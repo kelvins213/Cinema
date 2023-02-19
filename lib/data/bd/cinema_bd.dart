@@ -1,4 +1,5 @@
 import 'package:cinema/domain/cinema.dart';
+import 'package:cinema/domain/user.dart';
 
 class CinemaContents{
 
@@ -10,6 +11,8 @@ class CinemaContents{
   static Film film6 = Film(thumbLink: "https://br.web.img2.acsta.net/c_310_420/pictures/19/04/26/17/30/2428965.jpg", film: "Ultimate War", synopsis: "i like wars", date: "15/10/2023", time: "15:00");
   static Film film7 = Film(thumbLink: "https://br.web.img3.acsta.net/pictures/19/04/03/18/23/2539612.jpg", film: "The Joker", synopsis: "hey", date: "15/10/2023", time: "15:00");
   static Film film8 = Film(thumbLink: "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/8C9E09764AA2C055E1074C0BDDCC7C8091D619EDB349F43122D6F54A853E91B6/scale?width=506&aspectRatio=2.00&format=jpeg", film: "Megan Leavy", synopsis: "a cut dog", date: "15/10/2023", time: "15:00");
+
+  static User user = User(email: "kelvin@gmail.com", password: "123456");
 
   static List<Film> films = [
     film1,
