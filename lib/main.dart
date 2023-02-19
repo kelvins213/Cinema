@@ -1,5 +1,5 @@
 import 'package:cinema/pages/home_page.dart';
-import 'package:cinema/pages/login.dart';
+import 'package:cinema/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
