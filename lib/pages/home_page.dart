@@ -48,9 +48,9 @@ class _CinemaHomePage extends State<CinemaHomePage>{
           ],
         ),
       ),
-      backgroundColor: const Color(0xFF5F7161),
+      backgroundColor: const Color(0xFF4C6793),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF000000),
+        backgroundColor: const Color(0xFF00092C),
         centerTitle: true,
         title: buildText(text: "Films Available", size: 24, color: const Color(0xFFEEEEEE)),
       ),
