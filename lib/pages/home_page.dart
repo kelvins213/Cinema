@@ -1,6 +1,6 @@
 import 'package:cinema/data/bd/cinema_bd.dart';
 import 'package:cinema/domain/cinema.dart';
-import 'package:cinema/pages/booking.dart';
+import 'package:cinema/widget/booking.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

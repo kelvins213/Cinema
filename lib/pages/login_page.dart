@@ -31,9 +31,13 @@ class _LoginPage extends State<LoginPage>{
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
                   children: [
-                    //Image.network("https://br.web.img2.acsta.net/pictures/20/10/06/18/20/0630056.jpg"),
+                    SizedBox(height: 12),
+                    AspectRatio(
+                      aspectRatio: 4/3,
+                      child: Image.network("https://img.freepik.com/vetores-gratis/fundo-retro-do-cinema_52683-1701.jpg", height: 172,),
+                    ),
                     SizedBox(
-                      height: 320,
+                      height: 200,
                       child: Form(
                         key: _formKey,
                         child: Column(
