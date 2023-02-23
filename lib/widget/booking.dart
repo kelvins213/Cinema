@@ -43,7 +43,7 @@ class _BookingFilm extends State<BookingFilm> {
                         Container(
                           height: 600,
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Image.network(film.thumbLink, width: 200,),
                               buildCard(text: film.date, size: 24, icon: Icons.date_range),
@@ -53,7 +53,7 @@ class _BookingFilm extends State<BookingFilm> {
                         ),
                         Expanded(
                             child: Padding(
-                              padding: const EdgeInsets.all(8.00),
+                              padding: const EdgeInsets.all(12.0),
                               child: buildText(text: film.synopsis, size: 18),
                             ),
                         ),

@@ -24,68 +24,76 @@ class _LoginPage extends State<LoginPage>{
       backgroundColor: const Color(0xFF4C6793),
       body: ListView(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  children: [
-                    SizedBox(height: 12),
-                    AspectRatio(
-                      aspectRatio: 4/3,
-                      child: Image.network("https://img.freepik.com/vetores-gratis/fundo-retro-do-cinema_52683-1701.jpg", height: 172,),
-                    ),
-                    SizedBox(
-                      height: 200,
-                      child: Form(
-                        key: _formKey,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            TextFormField(
-                              controller: emailController,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: "Email",
+          Container(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 12),
+                          AspectRatio(
+                            aspectRatio: 4/3,
+                            child: Image.network("https://img.freepik.com/vetores-gratis/fundo-retro-do-cinema_52683-1701.jpg", height: 172,),
+                          ),
+                          SizedBox(
+                            height: 200,
+                            child: Form(
+                              key: _formKey,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  TextFormField(
+                                    controller: emailController,
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: "Email",
+                                    ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return "Input without fulfillment";
+                                      }
+                                    },
+                                  ),
+                                  TextFormField(
+                                    controller: passwordController,
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: "Password",
+                                    ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return "Input without fulfillment";
+                                      }
+                                    },
+                                  ),
+                                ],
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return "Input without fulfillment";
-                                }
-                              },
                             ),
-                            TextFormField(
-                              controller: passwordController,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: "Password",
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xFF00092C),
+                                  ),
+                                  onPressed: onPressed,
+                                  child: buildText(text: "Login", size: 18, color: const Color(0xFFEEEEEE))
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return "Input without fulfillment";
-                                }
-                              },
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF00092C),
-                            ),
-                            onPressed: onPressed,
-                            child: buildText(text: "Login", size: 18, color: const Color(0xFFEEEEEE))
-                        ),
-                      ],
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         ],
