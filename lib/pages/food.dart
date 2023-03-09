@@ -35,8 +35,6 @@ class _CinemaFood extends State<CinemaFood>{
   int sodaPrice = 2;
 
   Widget build(BuildContext context){
-
-    //0xFF4C6793
     return Scaffold(
       backgroundColor: const Color(0xFF4C6793),
       appBar: AppBar(
