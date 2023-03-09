@@ -1,4 +1,3 @@
 # Cinema
 
-
-[Gravação de tela de 24-01-2023 19:09:02.webm](https://user-images.githubusercontent.com/103438311/214432265-ff0692b2-027e-4869-92b4-bbdafce4f4d3.webm)
+[Gravação de tela de 23-02-2023 18:05:26.webm](https://user-images.githubusercontent.com/103438311/221031382-9cf283cc-48ae-47da-bdff-bd842806c2ef.webm)
