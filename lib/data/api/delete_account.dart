@@ -1,3 +1,5 @@
+import 'package:cinema/data/shared_preferences/shared_preferences.dart';
+import 'package:cinema/domain/costumer.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,8 +11,10 @@ class DeleteAccount{
     //remember: eventually, you'll need to change the <void> clause
     //and create the domain files (you will return the objects)
 
-    Uri url = Uri.http(baseURL, '("/deleteCostumer/:email');
-    Response response = await http.get(url);
+    User costumer = await SharedPreferencesHelper().getCostumerData();
+
+    Uri url = Uri.http(baseURL, '/deleteCostumer/${costumer.email}');
+    Response response = await http.delete(url);
 
     print(response.body);
     print(response.statusCode);

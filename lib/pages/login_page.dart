@@ -15,7 +15,7 @@ class LoginPage extends StatefulWidget{
 
 class _LoginPage extends State<LoginPage>{
   
-  User user = CinemaContents.user2;
+  User user = CinemaContents.user;
 
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();

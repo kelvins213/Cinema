@@ -13,8 +13,8 @@ class SharedPreferencesHelper{
 
   Future<User> getCostumerData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String costumerEmail = await prefs.getString("email") ?? "invalid";
-    String costumerPassword = await prefs.getString("password") ?? "invalid";
+    String costumerEmail = prefs.getString("email") ?? "invalid";
+    String costumerPassword = prefs.getString("password") ?? "invalid";
 
     User costumer = User(email: costumerEmail, password: costumerPassword);
 

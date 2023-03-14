@@ -5,7 +5,7 @@ import 'package:http/http.dart';
 
 class FilmsAvailable{
 
-  final String baseURL = "localhost:8080";
+  final String baseURL = "";
 
   Future<void> getFilmsAvailable() async{
 
