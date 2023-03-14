@@ -11,7 +11,7 @@ class CostumerBookings{
 
   Future<void> getBookings() async {
 
-    User costumer = await SharedPreferencesHelper().getCostumerData();
+    Costumer costumer = await SharedPreferencesHelper().getCostumerData();
 
     Uri url = Uri.http(baseURL, '/getBooking/${costumer.email}');
     Response response = await http.get(url);

@@ -9,7 +9,7 @@ class Account{
 
   Future<void> createAccount() async {
 
-    User costumer = await SharedPreferencesHelper().getCostumerData();
+    Costumer costumer = await SharedPreferencesHelper().getCostumerData();
 
     Uri url = Uri.http(baseURL, '/createCostumer/:name/${costumer.email}/${costumer.password}');
     Response response = await http.post(url);

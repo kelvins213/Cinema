@@ -25,36 +25,6 @@ class _CinemaHomePage extends State<CinemaHomePage>{
     //FilmsAvailable().getFilmsAvailable();
 
     return Scaffold(
-      drawer: Drawer(
-        backgroundColor: const Color(0xFF000000),
-        child: ListView(
-          children: [
-            DrawerHeader(
-              child: Container(
-                height: 100,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Booking Stuff",
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Color(0xFFEEEEEE),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            ListTile(
-              title: ElevatedButton(
-                onPressed: onPressed,
-                child: buildText(text: "Bookings", size: 24, color: const Color(0xFFEEEEEE)),
-              ),
-            ),
-          ],
-        ),
-      ),
       backgroundColor: const Color(0xFF4C6793),
       appBar: AppBar(
         backgroundColor: const Color(0xFF00092C),
@@ -63,12 +33,20 @@ class _CinemaHomePage extends State<CinemaHomePage>{
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              InkWell(
+                child: Icon(
+                  Icons.sticky_note_2_sharp,
+                  size: 32,
+                  color: const Color(0xFF16FF00),
+                ),
+                onTap: onTapBookings,
+              ),
               buildText(text: "Films Available", size: 24, color: const Color(0xFFEEEEEE)),
               InkWell(
                 child: Icon(
                   Icons.exit_to_app,
                   size: 32,
-                  color: Colors.red,
+                  color: const Color(0xFFFF1E1E),
                 ),
                 onTap: onTapLogOff,
               ),
@@ -117,10 +95,13 @@ class _CinemaHomePage extends State<CinemaHomePage>{
     );
   }
 
-  onPressed(){
+  onTapBookings(){
     Navigator.push(
         context,
-        MaterialPageRoute(builder: (context){return Bookings();})
+        MaterialPageRoute(
+            builder: (context){
+              return Bookings();
+            }),
     );
   }
 
@@ -157,6 +138,4 @@ class _CinemaHomePage extends State<CinemaHomePage>{
         ),
     );
   }
-
-
 }

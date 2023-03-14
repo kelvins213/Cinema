@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cinema/data/shared_preferences/shared_preferences.dart';
 import 'package:cinema/domain/costumer.dart';
 import 'package:http/http.dart';
@@ -18,7 +16,7 @@ class DeleteBooking{
 
   Future<void> deleteWatcher() async {
 
-    User costumer = await SharedPreferencesHelper().getCostumerData();
+    Costumer costumer = await SharedPreferencesHelper().getCostumerData();
 
     Uri url = Uri.http(baseURL, '/deleteWatcher/${costumer.email}/:filmName');
     Response response = await http.delete(url);

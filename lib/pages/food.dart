@@ -329,6 +329,7 @@ class _CinemaFood extends State<CinemaFood>{
                     ElevatedButton(
                       child: buildText(text: "Ok", size: 24, color: const Color(0xFFEEEEEE)),
                       onPressed: () {
+                        Navigator.of(context).popUntil((route) => route.isFirst); //it gets ride of showDialogue page
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

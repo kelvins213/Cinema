@@ -4,19 +4,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPreferencesHelper{
 
 
-  static storeCostumerData({required User costumer}) async {
+  static storeCostumerData({required Costumer costumer}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
+    await prefs.setString("name", costumer.name);
     await prefs.setString("email", costumer.email);
     await prefs.setString("password", costumer.password);
   }
 
-  Future<User> getCostumerData() async {
+  Future<Costumer> getCostumerData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String costumerName = prefs.getString("name") ?? "invalid";
     String costumerEmail = prefs.getString("email") ?? "invalid";
     String costumerPassword = prefs.getString("password") ?? "invalid";
 
-    User costumer = User(email: costumerEmail, password: costumerPassword);
+    Costumer costumer = Costumer(name:  costumerName, email: costumerEmail, password: costumerPassword);
 
     return costumer;
   }

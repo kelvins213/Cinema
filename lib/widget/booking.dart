@@ -48,6 +48,7 @@ class _BookingFilm extends State<BookingFilm> {
                               Image.network(film.thumbLink, width: 200,),
                               buildCard(text: film.date, size: 24, icon: Icons.date_range),
                               buildCard(text: film.time, size: 24, icon: Icons.hourglass_bottom),
+                              buildCard(text: film.room, size: 24, icon: Icons.living),
                             ],
                           ),
                         ),
@@ -99,15 +100,22 @@ class _BookingFilm extends State<BookingFilm> {
     );
   }
 
-  buildCard({required String text, required double size, required IconData icon}){
-    return Card(
+  buildCard({required dynamic text, required double size, required IconData icon}){
+    var stringText = text.toString();
+
+    return Container(
+      width: 184,
       color: const Color(0xFF4C6793),
-      child: Row(
-        children: [
-          buildText(text: text, size: size),
-          const SizedBox(width: 12),
-          Icon(icon, size: size),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            buildText(text: stringText, size: size),
+            const SizedBox(width: 12),
+            Icon(icon, size: size),
+          ],
+        ),
       ),
     );
   }

@@ -11,7 +11,7 @@ class DeleteAccount{
     //remember: eventually, you'll need to change the <void> clause
     //and create the domain files (you will return the objects)
 
-    User costumer = await SharedPreferencesHelper().getCostumerData();
+    Costumer costumer = await SharedPreferencesHelper().getCostumerData();
 
     Uri url = Uri.http(baseURL, '/deleteCostumer/${costumer.email}');
     Response response = await http.delete(url);

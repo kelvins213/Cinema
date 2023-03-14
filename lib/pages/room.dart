@@ -136,7 +136,7 @@ class _CinemaRoom extends State<CinemaRoom>{
                               child: Row(
                                 children: [
                                   const Card(
-                                    color: Color(0xFFDC0000),
+                                    color: Color(0xFFEDE9D5),
                                     child: Icon(
                                         Icons.event_seat
                                     ),

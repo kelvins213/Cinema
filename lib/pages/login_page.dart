@@ -3,7 +3,6 @@ import 'package:cinema/data/shared_preferences/shared_preferences.dart';
 import 'package:cinema/domain/costumer.dart';
 import 'package:cinema/pages/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget{
 
@@ -15,9 +14,10 @@ class LoginPage extends StatefulWidget{
 
 class _LoginPage extends State<LoginPage>{
   
-  User user = CinemaContents.user;
+  Costumer user = CinemaContents.user;
 
   final _formKey = GlobalKey<FormState>();
+  TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -44,12 +44,19 @@ class _LoginPage extends State<LoginPage>{
                             child: Image.network("https://img.freepik.com/vetores-gratis/fundo-retro-do-cinema_52683-1701.jpg", height: 172,),
                           ),
                           SizedBox(
-                            height: 200,
+                            height: 272,
                             child: Form(
                               key: _formKey,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
+                                  TextFormField(
+                                    controller: nameController,
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: "Name",
+                                    ),
+                                  ),
                                   TextFormField(
                                     controller: emailController,
                                     decoration: const InputDecoration(
@@ -114,13 +121,15 @@ class _LoginPage extends State<LoginPage>{
   }
 
   onPressed() async {
-    final bool firstState = emailController.text == user.email;
-    final bool secondState = passwordController.text == user.password;
+    final bool firstState = nameController.text == user.name;
+    final bool secondState = emailController.text == user.email;
+    final bool thirdState = passwordController.text == user.password;
+    
 
     if (_formKey.currentState!.validate()) {
-      if (firstState && secondState) {
+      if (firstState && secondState && thirdState) {
 
-        final costumer = User(email: emailController.text, password: passwordController.text);
+        final costumer = Costumer(name: nameController.text, email: emailController.text, password: passwordController.text);
         await SharedPreferencesHelper.storeCostumerData(costumer: costumer);
 
         Navigator.pushReplacement(
