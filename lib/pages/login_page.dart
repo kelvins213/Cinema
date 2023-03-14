@@ -1,7 +1,9 @@
 import 'package:cinema/data/bd/cinema_bd.dart';
+import 'package:cinema/data/shared_preferences/shared_preferences.dart';
 import 'package:cinema/domain/costumer.dart';
 import 'package:cinema/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget{
 
@@ -13,7 +15,7 @@ class LoginPage extends StatefulWidget{
 
 class _LoginPage extends State<LoginPage>{
   
-  User user = CinemaContents.user;
+  User user = CinemaContents.user2;
 
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
@@ -111,21 +113,25 @@ class _LoginPage extends State<LoginPage>{
       );
   }
 
-  onPressed(){
+  onPressed() async {
     final bool firstState = emailController.text == user.email;
     final bool secondState = passwordController.text == user.password;
 
     if (_formKey.currentState!.validate()) {
       if (firstState && secondState) {
+
+        final costumer = User(email: emailController.text, password: passwordController.text);
+        await SharedPreferencesHelper.storeCostumerData(costumer: costumer);
+
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context){return const CinemaHomePage();}
+              builder: (context) {
+                return const CinemaHomePage();
+              }
           ),
         );
       }
     }
   }
 }
-
-//747610JF

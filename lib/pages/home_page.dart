@@ -1,7 +1,9 @@
 import 'package:cinema/data/api/films.dart';
 import 'package:cinema/data/bd/cinema_bd.dart';
+import 'package:cinema/data/shared_preferences/shared_preferences.dart';
 import 'package:cinema/domain/film.dart';
 import 'package:cinema/pages/bookings.dart';
+import 'package:cinema/pages/login_page.dart';
 import 'package:cinema/widget/booking.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +22,7 @@ class _CinemaHomePage extends State<CinemaHomePage>{
   @override
   Widget build(BuildContext context){
 
-    FilmsAvailable().getFilmsAvailable();
+    //FilmsAvailable().getFilmsAvailable();
 
     return Scaffold(
       drawer: Drawer(
@@ -57,7 +59,22 @@ class _CinemaHomePage extends State<CinemaHomePage>{
       appBar: AppBar(
         backgroundColor: const Color(0xFF00092C),
         centerTitle: true,
-        title: buildText(text: "Films Available", size: 24, color: const Color(0xFFEEEEEE)),
+        title: Container(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              buildText(text: "Films Available", size: 24, color: const Color(0xFFEEEEEE)),
+              InkWell(
+                child: Icon(
+                  Icons.exit_to_app,
+                  size: 32,
+                  color: Colors.red,
+                ),
+                onTap: onTapLogOff,
+              ),
+            ],
+          ),
+        ),
       ),
       body: SafeArea(
         child: GridView.builder(
@@ -128,5 +145,18 @@ class _CinemaHomePage extends State<CinemaHomePage>{
       ),
     );
   }
+
+  onTapLogOff(){
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context){
+              SharedPreferencesHelper().cleanCostumerData();
+              return const LoginPage();
+            },
+        ),
+    );
+  }
+
 
 }

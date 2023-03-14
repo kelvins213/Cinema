@@ -13,6 +13,7 @@ class CinemaContents{
   static Film film8 = Film(thumbLink: "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/8C9E09764AA2C055E1074C0BDDCC7C8091D619EDB349F43122D6F54A853E91B6/scale?width=506&aspectRatio=2.00&format=jpeg", film: "Megan Leavey", synopsis: "A agente da marinha norte-americana Megan Leavey é uma especialista em treinamento de cães para detectar bombas. Ela é enviada ao Iraque, onde forma uma boa parceria com o cão Rex. No entanto, Megan é ferida e afastada do campo de batalha. Enquanto isso, o cão permanece em atividade, e ela espera a aposentadoria do animal para poder adotá-lo. Antes desse prazo, a ex-agente descobre que o cachorro sofrerá uma eutanásia e luta para reverter essa decisão.", date: "15/10/2023", time: "15:00");
 
   static User user = User(email: "kelvin@gmail.com", password: "123456");
+  static User user2 = User(email: "vitor@gmail.com", password: "vitor123");
 
   static List<Film> films = [
     film1,
