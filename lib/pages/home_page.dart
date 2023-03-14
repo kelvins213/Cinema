@@ -1,5 +1,7 @@
+import 'package:cinema/data/api/films.dart';
 import 'package:cinema/data/bd/cinema_bd.dart';
-import 'package:cinema/domain/cinema.dart';
+import 'package:cinema/domain/film.dart';
+import 'package:cinema/pages/bookings.dart';
 import 'package:cinema/widget/booking.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,9 @@ class _CinemaHomePage extends State<CinemaHomePage>{
 
   @override
   Widget build(BuildContext context){
+
+    FilmsAvailable().getFilmsAvailable();
+
     return Scaffold(
       drawer: Drawer(
         backgroundColor: const Color(0xFF000000),
@@ -95,7 +100,12 @@ class _CinemaHomePage extends State<CinemaHomePage>{
     );
   }
 
-  onPressed(){}
+  onPressed(){
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context){return Bookings();})
+    );
+  }
 
   onTap({required Film film}){
     Navigator.push(

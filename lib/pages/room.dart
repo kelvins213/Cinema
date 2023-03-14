@@ -1,4 +1,4 @@
-import 'package:cinema/domain/cinema.dart';
+import 'package:cinema/domain/film.dart';
 import 'package:cinema/pages/food.dart';
 import 'package:flutter/material.dart';
 
@@ -181,7 +181,7 @@ class _CinemaRoom extends State<CinemaRoom>{
 
     for (var i = 0; i < colors.length; i++) {
       if (colors[i] == const Color(0xFFDC0000)) {
-        chairsIndex.add(i);
+        chairsIndex.add(i + 1);
       }
     }
 

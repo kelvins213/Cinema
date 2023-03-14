@@ -1,5 +1,5 @@
 import 'package:cinema/data/bd/cinema_bd.dart';
-import 'package:cinema/domain/user.dart';
+import 'package:cinema/domain/costumer.dart';
 import 'package:cinema/pages/home_page.dart';
 import 'package:flutter/material.dart';
 

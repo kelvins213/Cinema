@@ -1,5 +1,5 @@
-import 'package:cinema/domain/cinema.dart';
-import 'package:cinema/domain/user.dart';
+import 'package:cinema/domain/film.dart';
+import 'package:cinema/domain/costumer.dart';
 
 class CinemaContents{
 
