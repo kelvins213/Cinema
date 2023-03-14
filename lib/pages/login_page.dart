@@ -1,6 +1,7 @@
 import 'package:cinema/data/bd/cinema_bd.dart';
 import 'package:cinema/data/shared_preferences/shared_preferences.dart';
 import 'package:cinema/domain/costumer.dart';
+import 'package:cinema/pages/create_account.dart';
 import 'package:cinema/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,18 @@ class LoginPage extends StatefulWidget{
 }
 
 class _LoginPage extends State<LoginPage>{
-  
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  bool hover = true;
+
+  Color colorEnter = const Color(0xFFE6B325);
+  Color colorExit = const Color(0xFF4C6793);
+
   Costumer user = CinemaContents.user;
 
   final _formKey = GlobalKey<FormState>();
@@ -44,11 +56,12 @@ class _LoginPage extends State<LoginPage>{
                             child: Image.network("https://img.freepik.com/vetores-gratis/fundo-retro-do-cinema_52683-1701.jpg", height: 172,),
                           ),
                           SizedBox(
-                            height: 272,
+                            height: 292,
                             child: Form(
                               key: _formKey,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   TextFormField(
                                     controller: nameController,
@@ -86,8 +99,25 @@ class _LoginPage extends State<LoginPage>{
                             ),
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              //do it here
+                              MouseRegion(
+                                onEnter: (event){
+                                  setState(() {
+                                    hover = false;
+                                  });
+                                },
+                                onExit: (event){
+                                  setState(() {
+                                    hover = true;
+                                  });
+                                },
+                                child: InkWell(
+                                  child:hover==true? buildTextUnderlined(text: "create account", size: 18, color: colorExit) : buildTextUnderlined(text: "create account", size: 18, color: colorEnter),
+                                  onTap: onTap,
+                                ),
+                              ),
                               ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: const Color(0xFF00092C),
@@ -120,6 +150,17 @@ class _LoginPage extends State<LoginPage>{
       );
   }
 
+  buildTextUnderlined({required String text, required double size, required Color color}){
+    return Text(
+      text,
+      style: TextStyle(
+        decoration: TextDecoration.underline,
+        color: color,
+        fontSize: size,
+      ),
+    );
+  }
+
   onPressed() async {
     final bool firstState = nameController.text == user.name;
     final bool secondState = emailController.text == user.email;
@@ -142,5 +183,16 @@ class _LoginPage extends State<LoginPage>{
         );
       }
     }
+  }
+
+  onTap() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) {
+              return const CreateAccount();
+            },
+        ),
+    );
   }
 }

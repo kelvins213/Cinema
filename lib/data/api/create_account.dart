@@ -11,7 +11,7 @@ class Account{
 
     Costumer costumer = await SharedPreferencesHelper().getCostumerData();
 
-    Uri url = Uri.http(baseURL, '/createCostumer/:name/${costumer.email}/${costumer.password}');
+    Uri url = Uri.http(baseURL, '/createCostumer/${costumer.name}/${costumer.email}/${costumer.password}');
     Response response = await http.post(url);
 
   }
