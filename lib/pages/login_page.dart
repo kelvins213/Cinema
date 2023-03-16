@@ -1,5 +1,5 @@
 import 'package:cinema/data/bd/cinema_bd.dart';
-import 'package:cinema/data/shared_preferences/shared_preferences.dart';
+import 'package:cinema/data/shared_preferences/costumer_shared_preferences.dart';
 import 'package:cinema/domain/costumer.dart';
 import 'package:cinema/pages/create_account.dart';
 import 'package:cinema/pages/home_page.dart';
@@ -69,6 +69,11 @@ class _LoginPage extends State<LoginPage>{
                                       border: OutlineInputBorder(),
                                       labelText: "Name",
                                     ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return "Input without fulfillment";
+                                      }
+                                    },
                                   ),
                                   TextFormField(
                                     controller: emailController,
@@ -171,7 +176,7 @@ class _LoginPage extends State<LoginPage>{
       if (firstState && secondState && thirdState) {
 
         final costumer = Costumer(name: nameController.text, email: emailController.text, password: passwordController.text);
-        await SharedPreferencesHelper.storeCostumerData(costumer: costumer);
+        await CostumerSharedPreferencesHelper.storeCostumerData(costumer: costumer);
 
         Navigator.pushReplacement(
           context,

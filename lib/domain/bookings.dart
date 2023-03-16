@@ -1,0 +1,1 @@
+//vai funcionar em conjunto com o booking_shared_references

@@ -1,6 +1,7 @@
-import 'package:cinema/data/api/films.dart';
+import 'package:cinema/data/api/get/films.dart';
 import 'package:cinema/data/bd/cinema_bd.dart';
-import 'package:cinema/data/shared_preferences/shared_preferences.dart';
+import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
+import 'package:cinema/data/shared_preferences/costumer_shared_preferences.dart';
 import 'package:cinema/domain/film.dart';
 import 'package:cinema/pages/bookings.dart';
 import 'package:cinema/pages/login_page.dart';
@@ -105,7 +106,10 @@ class _CinemaHomePage extends State<CinemaHomePage>{
     );
   }
 
-  onTap({required Film film}){
+  onTap({required Film film}) async {
+
+    await BookingSharedPreferencesHelper().storeFilmInfos(filmName: film.film, roomNumber: film.room);
+
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -132,7 +136,7 @@ class _CinemaHomePage extends State<CinemaHomePage>{
         context,
         MaterialPageRoute(
             builder: (context){
-              SharedPreferencesHelper().cleanCostumerData();
+              CostumerSharedPreferencesHelper().cleanCostumerData();
               return const LoginPage();
             },
         ),

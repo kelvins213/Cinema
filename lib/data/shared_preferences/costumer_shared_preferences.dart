@@ -1,7 +1,7 @@
 import 'package:cinema/domain/costumer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPreferencesHelper{
+class CostumerSharedPreferencesHelper{
 
 
   static storeCostumerData({required Costumer costumer}) async {

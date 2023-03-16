@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:cinema/data/shared_preferences/shared_preferences.dart';
+import 'package:cinema/data/shared_preferences/costumer_shared_preferences.dart';
 import 'package:cinema/domain/costumer.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
@@ -11,7 +11,7 @@ class CostumerBookings{
 
   Future<void> getBookings() async {
 
-    Costumer costumer = await SharedPreferencesHelper().getCostumerData();
+    Costumer costumer = await CostumerSharedPreferencesHelper().getCostumerData();
 
     Uri url = Uri.http(baseURL, '/getBooking/${costumer.email}');
     Response response = await http.get(url);

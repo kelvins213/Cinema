@@ -1,3 +1,4 @@
+import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
 import 'package:cinema/domain/film.dart';
 import 'package:cinema/pages/food.dart';
 import 'package:flutter/material.dart';
@@ -176,7 +177,7 @@ class _CinemaRoom extends State<CinemaRoom>{
     });
   }
 
-  onPressed(){
+  onPressed() async {
     List<int> chairsIndex = <int>[];
 
     for (var i = 0; i < colors.length; i++) {
@@ -188,6 +189,7 @@ class _CinemaRoom extends State<CinemaRoom>{
     if (chairsIndex.isEmpty){
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } else {
+      await BookingSharedPreferencesHelper().storeChairsIDs(chairsIDs: chairsIndex);
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context){return CinemaFood(chairsBooked: chairsIndex, totalPrice: chairsIndex.length * chairPrice,);}),

@@ -1,3 +1,4 @@
+import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
 import 'package:cinema/pages/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -328,7 +329,10 @@ class _CinemaFood extends State<CinemaFood>{
                     ),
                     ElevatedButton(
                       child: buildText(text: "Ok", size: 24, color: const Color(0xFFEEEEEE)),
-                      onPressed: () {
+                      onPressed: () async {
+
+                        await BookingSharedPreferencesHelper().storeFood(quantPopkorn: totalPopcornPrice/5, quantSoda: totalSodaPrice/2);
+
                         Navigator.of(context).popUntil((route) => route.isFirst); //it gets ride of showDialogue page
                         Navigator.pushReplacement(
                           context,
