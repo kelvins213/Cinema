@@ -150,7 +150,3 @@ class _CinemaHomePage extends State<CinemaHomePage>{
     );
   }
 }
-
-/*
-
-*/
