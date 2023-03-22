@@ -20,8 +20,6 @@ class BookingSharedPreferencesHelper{
     }
 
     await prefBooking.setStringList("chairsIDs", chairs);
-
-    List<String> list = prefBooking.getStringList("chairsIDs") ?? [];
   }
 
   Future<void> storeFood({required int quantPopkorn, required int quantSoda}) async   {

@@ -10,9 +10,9 @@ class CostumerBookings{
 
   final String baseURL = "cin.onrender.com";
 
-  Future<List<CostumerReservs>> getReservs() async {
+  Future<List<dynamic>> getReservs() async {
 
-    List<CostumerReservs> rList = [];
+    List<CostumerReservs> reservList = <CostumerReservs>[];
 
     Costumer costumer = await CostumerSharedPreferencesHelper().getCostumerData();
 
@@ -20,18 +20,23 @@ class CostumerBookings{
     Response response = await http.get(url);
 
     print(response.statusCode);
+    print(response.contentLength);
+    print(response.reasonPhrase);
+    print(response.request);
 
     var json = jsonDecode(response.body);
 
-    print(json['costumer_bookings'].length);
-
     if (response.statusCode == 200) {
-      for (var i = 0; i < json['costumer_bookings'].length; i++) {
-        CostumerReservs r = CostumerReservs.fromJson(json['costumer_bookings'][i]);
-        rList.add(r);
+      /*
+      for (var i in json['costumer_bookings']) {
+        print(i);
+        CostumerReservs reserv = CostumerReservs.fromJson(i);
+        print(reserv.name);
+        reservList.add(reserv);
       }
+      */
     }
 
-    return rList;
+    return json['costumer_bookings'];
   }
 }
