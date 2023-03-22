@@ -24,9 +24,9 @@ class _BookingFilm extends State<BookingFilm> {
     return Scaffold(
       backgroundColor: const Color(0xFF00092C),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF000000),
+        backgroundColor: const Color(0xFF4C6793),
         centerTitle: true,
-        title: buildText(text: film.film, size: 24),
+        title: buildText(text: film.name, size: 24),
       ),
       body: SafeArea(
         child: ListView(

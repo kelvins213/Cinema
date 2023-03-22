@@ -20,12 +20,14 @@ class BookingSharedPreferencesHelper{
     }
 
     await prefBooking.setStringList("chairsIDs", chairs);
+
+    List<String> list = prefBooking.getStringList("chairsIDs") ?? [];
   }
 
-  Future<void> storeFood({required double quantPopkorn, required double quantSoda}) async {
+  Future<void> storeFood({required int quantPopkorn, required int quantSoda}) async   {
     SharedPreferences prefBooking = await SharedPreferences.getInstance();
-    await prefBooking.setDouble("quantPopkorn", quantPopkorn);
-    await prefBooking.setDouble("quantSoda", quantSoda);
+    await prefBooking.setInt("quantPopkorn", quantPopkorn);
+    await prefBooking.setInt("quantSoda", quantSoda);
   }
 
   Future<Film> getFilmInfos() async {
@@ -33,7 +35,7 @@ class BookingSharedPreferencesHelper{
     String filmName = prefBooking.getString("filmName") ?? "invalid";
     int roomNumber = prefBooking.getInt("roomNumber") ?? 0;
 
-    Film film = Film(thumbLink: "", film: filmName, synopsis: "", date: "", time: "", room: roomNumber);
+    Film film = Film(thumbLink: "", name: filmName, synopsis: "", date: "", time: "", room: roomNumber);
 
     return film;
   }
@@ -54,8 +56,8 @@ class BookingSharedPreferencesHelper{
   Future<Food> getFoodInfos() async {
     SharedPreferences prefBooking = await SharedPreferences.getInstance();
 
-    double quantPopkorn = prefBooking.getDouble("quantPopkorn") ?? 0.0;
-    double quantSoda = prefBooking.getDouble("quantSoda")  ?? 0.0;
+    int quantPopkorn = prefBooking.getInt("quantPopkorn") ?? 0;
+    int quantSoda = prefBooking.getInt("quantSoda")  ?? 0;
 
     Food food = Food(quantPopkorn: quantPopkorn, quantSoda: quantSoda);
 

@@ -1,7 +1,7 @@
 class Food{
 
-  late final double quantPopkorn;
-  late final double quantSoda;
+  late final int quantPopkorn;
+  late final int quantSoda;
 
   Food({required this.quantPopkorn, required this.quantSoda});
 }

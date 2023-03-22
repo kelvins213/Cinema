@@ -1,3 +1,4 @@
+import 'package:cinema/data/api/get/chairs.dart';
 import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
 import 'package:cinema/domain/film.dart';
 import 'package:cinema/pages/food.dart';
@@ -18,14 +19,11 @@ class CinemaRoom extends StatefulWidget {
 
 class _CinemaRoom extends State<CinemaRoom>{
 
-  final int chairPrice = 7;
-
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
+  Future<List<dynamic>> chairsBooked = ChairsBooked().getChairs();
+
+  final int chairPrice = 7;
   dynamic snackBar = SnackBar(
     backgroundColor: const Color(0xFFDC0000),
     content: Row(
@@ -39,17 +37,9 @@ class _CinemaRoom extends State<CinemaRoom>{
   List numbers = new List<int>.generate(80, (i) => i + 1);
   late List <Color> colors = <Color>[];
 
-  generateColorList(){
-    for (var i = 0; i < 80; i++) {
-      colors.add(const Color(0xFF4C6793));
-    }
-  }
-
   Film get film => widget.film;
 
   Widget build(BuildContext context){
-    generateColorList();
-
     return Scaffold(
       backgroundColor: const Color(0xFF00092C),
       appBar: AppBar(
@@ -87,24 +77,35 @@ class _CinemaRoom extends State<CinemaRoom>{
                             ),
                           ),
                         ),
-                        GridView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 8,
-                          ),
-                          itemBuilder: (context, index){
-                            return InkWell(
-                              onTap: () => onTap(chairIndex: index),
-                              child: Card(
-                                color: colors[index],
-                                child: const Icon(
-                                  Icons.event_seat
+                        FutureBuilder <List<dynamic>>(
+                          future: chairsBooked,
+                          builder: (context, snapshot){
+                            if (snapshot.hasData) {
+                              List<dynamic> chairs = snapshot.data ?? [];
+                              generateColorList(chairsBooked: chairs);
+                              return GridView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 8,
                                 ),
-                              ),
-                            );
+                                itemBuilder: (context, index){
+                                  return InkWell(
+                                    onTap: () => onTap(chairIndex: index),
+                                    child: Card(
+                                      color: colors[index],
+                                      child: const Icon(
+                                          Icons.event_seat
+                                      ),
+                                    ),
+                                  );
+                                },
+                                itemCount: numbers.length,
+                              );
+                            } else {
+                              return const CircularProgressIndicator();
+                            }
                           },
-                          itemCount: numbers.length,
                         ),
                       ],
                     ),
@@ -137,7 +138,7 @@ class _CinemaRoom extends State<CinemaRoom>{
                               child: Row(
                                 children: [
                                   const Card(
-                                    color: Color(0xFFEDE9D5),
+                                    color: Color(0xFFDC0000),
                                     child: Icon(
                                         Icons.event_seat
                                     ),
@@ -167,12 +168,35 @@ class _CinemaRoom extends State<CinemaRoom>{
     );
   }
 
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  generateColorList({required List<dynamic> chairsBooked}) {
+
+    for (var i = 0; i < 80; i++) {
+      colors.add(const Color(0xFF4C6793));
+    }
+
+    for (var id in chairsBooked) {
+      id = id - 1;
+      for (var i = 0; i < 80; i++) {
+        if (id == i) {
+          colors[i] = const Color(0xFFDC0000);
+        }
+      }
+    }
+  }
+
   onTap({required int chairIndex}){
     setState(() {
       if (colors[chairIndex] == const Color(0xFF4C6793)) {
-        colors[chairIndex] = const Color(0xFFDC0000);
+        colors[chairIndex] = const Color(0xFFEDE9D5);
       } else {
-        colors[chairIndex] = const Color(0xFF4C6793);
+        if (colors[chairIndex] == const Color(0xFFEDE9D5)) {
+          colors[chairIndex] = const Color(0xFF4C6793);
+        }
       }
     });
   }
@@ -181,7 +205,7 @@ class _CinemaRoom extends State<CinemaRoom>{
     List<int> chairsIndex = <int>[];
 
     for (var i = 0; i < colors.length; i++) {
-      if (colors[i] == const Color(0xFFDC0000)) {
+      if (colors[i] == const Color(0xFFEDE9D5)) {
         chairsIndex.add(i + 1);
       }
     }

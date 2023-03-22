@@ -1,4 +1,4 @@
-import 'package:cinema/data/bd/cinema_bd.dart';
+import 'package:cinema/data/api/get/search_costumer.dart';
 import 'package:cinema/data/shared_preferences/costumer_shared_preferences.dart';
 import 'package:cinema/domain/costumer.dart';
 import 'package:cinema/pages/create_account.dart';
@@ -26,14 +26,12 @@ class _LoginPage extends State<LoginPage>{
   Color colorEnter = const Color(0xFFE6B325);
   Color colorExit = const Color(0xFF4C6793);
 
-  Costumer user = CinemaContents.user;
-
   final _formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF4C6793),
       body: ListView(
@@ -167,25 +165,21 @@ class _LoginPage extends State<LoginPage>{
   }
 
   onPressed() async {
-    final bool firstState = nameController.text == user.name;
-    final bool secondState = emailController.text == user.email;
-    final bool thirdState = passwordController.text == user.password;
-    
-
     if (_formKey.currentState!.validate()) {
-      if (firstState && secondState && thirdState) {
+      final costumer = Costumer(name: nameController.text, email: emailController.text, password: passwordController.text, logged: true);
+      await CostumerSharedPreferencesHelper.storeCostumerData(costumer: costumer);
 
-        final costumer = Costumer(name: nameController.text, email: emailController.text, password: passwordController.text);
-        await CostumerSharedPreferencesHelper.storeCostumerData(costumer: costumer);
+      bool userAccount = await Login().searchForAccount();
 
+      if (userAccount) {
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) {
-                return const CinemaHomePage();
-              }
-          ),
+            context,
+            MaterialPageRoute(
+                builder: (context){return const CinemaHomePage();}
+            ),
         );
+      } else {
+        //return error message
       }
     }
   }

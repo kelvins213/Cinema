@@ -8,36 +8,41 @@ import 'package:http/http.dart' as http;
 
 class Booking{
 
-  final String baseURL = "";
+  final String baseURL = "cin.onrender.com";
 
-  Future<bool> createBooking() async {
+  Future<void> createBooking() async {
+
     Costumer costumer = await CostumerSharedPreferencesHelper().getCostumerData();
+
     Film film = await BookingSharedPreferencesHelper().getFilmInfos();
+
     List<int> chairsIDs = await BookingSharedPreferencesHelper().getChairsIDs();
+
+    print(costumer.email);
+    print(film.room);
+    print(chairsIDs);
+
     int responseCount = 0;
 
     for (var chairID in chairsIDs) {
-      Uri url = Uri.http(baseURL, '/createBooking/${costumer.email}/$chairID/${film.room}');
+      Uri url = Uri.https(baseURL, '/createBooking/${costumer.email}/$chairID/${film.room}');
       Response response = await http.post(url);
 
-      if (response.statusCode == 201) {
+      print(response.body);
+      print(response.statusCode);
+
+      if (response.statusCode == 202) {
+        print("oi");
         responseCount++;
       }
     }
-
-    if (responseCount == chairsIDs.length) {
-      return true;
-    } else {
-      return false;
-    }
-
   }
 
   Future<void> setWatch() async {
     Costumer costumer = await CostumerSharedPreferencesHelper().getCostumerData();
     Film film = await BookingSharedPreferencesHelper().getFilmInfos();
 
-    Uri url = Uri.http(baseURL, '/setWatch/${film.film}/${costumer.email}');
+    Uri url = Uri.https(baseURL, '/setWatch/${film.name}/${costumer.email}');
     Response response = await http.post(url);
 
   }
@@ -46,7 +51,7 @@ class Booking{
     Costumer costumer = await CostumerSharedPreferencesHelper().getCostumerData();
     Food food = await BookingSharedPreferencesHelper().getFoodInfos();
 
-    Uri url = Uri.http(baseURL, '/setFood/${costumer.email}/${food.quantPopkorn}/${food.quantSoda}');
+    Uri url = Uri.https(baseURL, '/setFood/${costumer.email}/${food.quantPopkorn}/${food.quantSoda}');
     Response response = await http.post(url);
 
   }

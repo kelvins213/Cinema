@@ -1,4 +1,8 @@
 import 'package:cinema/data/api/post/account.dart';
+import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
+import 'package:cinema/data/shared_preferences/costumer_shared_preferences.dart';
+import 'package:cinema/domain/costumer.dart';
+import 'package:cinema/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccount extends StatefulWidget {
@@ -105,14 +109,17 @@ class _CreateAccountState extends State<CreateAccount> {
 
   onPressed() async {
     if (_formKey.currentState!.validate()) {
-      await Account().createAccount();
-      /*
-      var situacion = await Account().createAccount();
-      if (situacion) {
-        showDialog(),
-        go back to the login page
+
+      print(emailController.text);
+      Costumer costumer = Costumer(email: emailController.text, password: passwordController.text, name: nameController.text, logged: false);
+      await CostumerSharedPreferencesHelper.storeCostumerData(costumer: costumer);
+
+      bool accountSucceed = await Account().createAccount();
+      if (accountSucceed) {
+        //showDialog(),
+
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return LoginPage();}));
       }
-    */
     }
   }
 }

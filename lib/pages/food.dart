@@ -1,4 +1,6 @@
+import 'package:cinema/data/api/post/bookings.dart';
 import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
+import 'package:cinema/pages/bookings.dart';
 import 'package:cinema/pages/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +58,7 @@ class _CinemaFood extends State<CinemaFood>{
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   const Card(
-                    color: Color(0xFFDC0000),
+                    color: Color(0xFFEDE9D5),
                     child: Icon(
                       Icons.event_seat,
                       size: 50,
@@ -285,8 +287,6 @@ class _CinemaFood extends State<CinemaFood>{
         }
       }
       widget.totalPrice = (totalPopcornPrice + totalSodaPrice + (chairPrice * chairs.length));
-
-      print(totalPrice);
     });
   }
 
@@ -331,7 +331,10 @@ class _CinemaFood extends State<CinemaFood>{
                       child: buildText(text: "Ok", size: 24, color: const Color(0xFFEEEEEE)),
                       onPressed: () async {
 
-                        await BookingSharedPreferencesHelper().storeFood(quantPopkorn: totalPopcornPrice/5, quantSoda: totalSodaPrice/2);
+                        await BookingSharedPreferencesHelper().storeFood(quantPopkorn: (totalPopcornPrice/5).ceil(), quantSoda: (totalSodaPrice/2).ceil());
+                        await Booking().createBooking();
+                        await Booking().setWatch();
+                        await Booking().setFood();
 
                         Navigator.of(context).popUntil((route) => route.isFirst); //it gets ride of showDialogue page
                         Navigator.pushReplacement(
