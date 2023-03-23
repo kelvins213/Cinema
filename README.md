@@ -1,4 +1,4 @@
-# Updated source code in branch the second branch
+# Updated source code in cinema_app_with_api branch
 
 # Cinema
 
