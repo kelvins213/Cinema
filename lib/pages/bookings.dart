@@ -1,5 +1,7 @@
 import 'package:cinema/data/api/delete/booking.dart';
 import 'package:cinema/data/api/get/bookings.dart';
+import 'package:cinema/data/shared_preferences/delete_booking_shared_preferences.dart';
+import 'package:cinema/domain/bookings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -129,7 +131,7 @@ class _Bookings extends State<Bookings>{
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: const Color(0xFFFF0303),
                                         ),
-                                          onPressed: () => onPressed(chairs: reservedFilms[index]['chairs'], roomNumber: reservedFilms[index]['room'], filmName: reservedFilms[index]['name']),
+                                          onPressed: () => onPressed(reserv: reservedFilms[index]),
                                           child: buildText(text: "Delete", size: 24, color: const Color(0xFFFEFCF3)),
                                       ),
                                     ),
@@ -187,13 +189,17 @@ class _Bookings extends State<Bookings>{
   }
 
 
-  onPressed({required List<dynamic> chairs, required int roomNumber, required String filmName}) async {
+  onPressed({required dynamic reserv}) async {
     //once its onPressed, you have to disable all buttons and show a CircularProgressIndicator
     //to do it, you can easyly use the FutureBuilder widget
     //remember, you must do it on food page too
 
-    await DeleteBooking().deleteBooking(chairs: chairs, roomNumber: roomNumber);
-    await DeleteBooking().deleteWatcher(filmName: filmName);
+    CostumerReservs r = CostumerReservs(cod: reserv["cod"], name: reserv["name"], date: reserv["date"], time: reserv["time"], thumbLink: reserv["thumblink"], synopsis: reserv["synopsis"], room: reserv["room"], chairs: reserv["chairs"]);
+    await DeleteBookingSharedPreferencesHelper().storeBookInfos(reserv: r);
+    await DeleteBookingSharedPreferencesHelper().getBookInfo();
+
+    await DeleteBooking().deleteBooking();
+    await DeleteBooking().deleteWatcher();
 
     setState(() {
       reservs = CostumerBookings().getReservs();
@@ -215,7 +221,7 @@ class _Bookings extends State<Bookings>{
 
   buildChairText({required List<dynamic> chairs, required double size, required Color color}){
 
-    String text = "|";
+    String text = "| ";
 
     for (var chair in chairs) {
       text = text + "${chair.toString()} |";

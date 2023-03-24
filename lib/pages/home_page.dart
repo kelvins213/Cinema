@@ -138,7 +138,13 @@ class _CinemaHomePage extends State<CinemaHomePage>{
     );
   }
 
-  onTapLogOff(){
+  onTapLogOff() async {
+
+    await CostumerSharedPreferencesHelper().storeLoginState(logged: false);
+    //deu certo!
+    bool state = await CostumerSharedPreferencesHelper().getLoginState();
+    print(state);
+
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(

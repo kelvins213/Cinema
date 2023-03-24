@@ -32,4 +32,18 @@ class CostumerSharedPreferencesHelper{
     prefs.remove("password");
     prefs.setBool("logged", false);
   }
+
+  Future<void> storeLoginState({required bool logged}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("logged", logged);
+  }
+
+  Future<bool> getLoginState() async {
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool logged = prefs.getBool("logged") ?? false;
+
+    return logged;
+  }
+
 }
