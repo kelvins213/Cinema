@@ -1,5 +1,5 @@
 import 'package:cinema/domain/film.dart';
-import 'package:cinema/pages/room.dart';
+import 'package:cinema/widget/room.dart';
 import 'package:flutter/material.dart';
 
 class BookingFilm extends StatefulWidget {

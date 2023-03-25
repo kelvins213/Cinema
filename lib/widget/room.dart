@@ -1,7 +1,7 @@
 import 'package:cinema/data/api/get/chairs.dart';
 import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
 import 'package:cinema/domain/film.dart';
-import 'package:cinema/pages/food.dart';
+import 'package:cinema/widget/food.dart';
 import 'package:flutter/material.dart';
 
 class CinemaRoom extends StatefulWidget {

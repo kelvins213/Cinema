@@ -44,6 +44,9 @@ class _Bookings extends State<Bookings>{
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              width: 1.2,
+                            ),
                             color: const Color(0xFFFEFCF3),
                           ),
                           height: 420,
@@ -64,15 +67,18 @@ class _Bookings extends State<Bookings>{
                                         ),
                                         const SizedBox(height: 12,),
                                         Container(
-                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(6.0),
                                             color: Colors.greenAccent,
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                Icon(Icons.emergency_recording),
-                                                buildText(text: reservedFilms[index]['name'], size: 24, color: const Color(0xFF000000)),
-                                              ],
-                                            ),
+                                          ),
+                                          width: 200,
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Icon(Icons.emergency_recording),
+                                              buildText(text: reservedFilms[index]['name'], size: 24, color: const Color(0xFF000000)),
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),
