@@ -16,8 +16,8 @@ class DeleteBookingSharedPreferencesHelper{
     prefs.setString("film", reserv.name);
     prefs.setString("date", reserv.date);
     prefs.setString("time", reserv.time);
-    prefs.setString("thumbLink", reserv.thumbLink);
-    prefs.setString("synopsis", reserv.synopsis);
+    //prefs.setString("thumbLink", reserv.thumbLink);
+    //prefs.setString("synopsis", reserv.synopsis);
     prefs.setInt("room", reserv.room);
     prefs.setStringList("chairs", chairs);
   }
@@ -29,12 +29,11 @@ class DeleteBookingSharedPreferencesHelper{
     String film = prefs.getString("film") ?? "invalid";
     String date = prefs.getString("date") ?? "invalid";
     String time = prefs.getString("time") ?? "invalid";
-    String thumbLink = prefs.getString("thumbLink") ?? "invalid";
-    String synopsis = prefs.getString("synopsis") ?? "invalid";
+    //String synopsis = prefs.getString("synopsis") ?? "invalid";
     int room = prefs.getInt("room") ?? 0;
     List<dynamic> chairs = prefs.getStringList("chairs") ?? [];
 
-    CostumerReservs reserv = CostumerReservs(cod: cod, name: film, date: date, time: time, thumbLink: thumbLink, synopsis: synopsis, room: room, chairs: chairs);
+    CostumerReservs reserv = CostumerReservs(cod: cod, name: film, date: date, time: time, thumbLink: "thumbLink", synopsis: "synopsis", room: room, chairs: chairs);
 
     return reserv;
   }

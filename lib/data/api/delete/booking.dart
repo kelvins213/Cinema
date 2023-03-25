@@ -33,4 +33,14 @@ class DeleteBooking{
     print(response.body);
   }
 
+  Future<void> deleteFood() async {
+
+    Costumer costumer = await CostumerSharedPreferencesHelper().getCostumerData();
+    CostumerReservs filmToDelete = await DeleteBookingSharedPreferencesHelper().getBookInfo();
+
+    Uri url = Uri.https(baseURL, '/deleteFood/${costumer.email}/${filmToDelete.room}');
+    Response response = await http.delete(url);
+
+    print(response.statusCode);
+  }
 }

@@ -2,6 +2,7 @@ import 'package:cinema/data/api/delete/booking.dart';
 import 'package:cinema/data/api/get/bookings.dart';
 import 'package:cinema/data/shared_preferences/delete_booking_shared_preferences.dart';
 import 'package:cinema/domain/bookings.dart';
+import 'package:cinema/domain/food.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,10 @@ class _Bookings extends State<Bookings>{
   @override
 
   Future<List<CostumerReservs>> reservs = CostumerBookings().getReservs();
+  Future<Food> foodReserved = CostumerBookings().getFood();
+
+
+
   List<IconData> icons = [Icons.date_range, Icons.hourglass_bottom, Icons.living];
 
   Widget build(BuildContext context){
@@ -49,7 +54,7 @@ class _Bookings extends State<Bookings>{
                       padding: const EdgeInsets.all(16.0),
                       child: Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.0),
                           border: Border.all(
                             width: 1.2,
                           ),
@@ -68,7 +73,7 @@ class _Bookings extends State<Bookings>{
                                   Column(
                                     children: [
                                       InkWell(
-                                        onTap: () => onTap(thumblink: reservedFilms[index].thumbLink, synopsis: reservedFilms[index].synopsis),
+                                        onTap: () => onTap(thumbLink: reservedFilms[index].thumbLink, synopsis: reservedFilms[index].synopsis),
                                         child: Image.network(reservedFilms[index].thumbLink, width: 200,),
                                       ),
                                       const SizedBox(height: 12,),
@@ -157,6 +162,7 @@ class _Bookings extends State<Bookings>{
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: const Color(0xFFFF0303),
+                                        side: const BorderSide(width: 1.2),
                                       ),
                                       onPressed: () => onPressed(reserv: reservedFilms[index]),
                                       child: buildText(text: "Delete", size: 24, color: const Color(0xFFFEFCF3)),
@@ -180,6 +186,37 @@ class _Bookings extends State<Bookings>{
               }
             },
           ),
+          FutureBuilder<Food>(
+            future: foodReserved,
+            builder: (context, snapshot){
+              if (snapshot.hasData) {
+                Food food = snapshot.data!;
+                return Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF3A98B9),
+                      border: Border.all(color: const Color(0xFF000000), width: 1.2),
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    width: MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          buildFoodCard(icon: Icons.takeout_dining, quant: food.quantPopkorn),
+                          buildFoodCard(icon: Icons.local_bar, quant: food.quantSoda),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
         ],
       ),
     );
@@ -190,7 +227,7 @@ class _Bookings extends State<Bookings>{
     super.initState();
   }
 
-  onTap({required String thumblink, required String synopsis}){
+  onTap({required String thumbLink, required String synopsis}){
     showDialog(
         context: context,
         barrierDismissible: true,
@@ -204,7 +241,7 @@ class _Bookings extends State<Bookings>{
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Image.network(thumblink, width: 200,),
+                    Image.network(thumbLink, width: 200,),
                     buildText(text: synopsis, size: 18, color: const Color(0xFFEEEEEE)),
                   ],
                 ),
@@ -214,7 +251,6 @@ class _Bookings extends State<Bookings>{
         }
     );
   }
-
 
   onPressed({required CostumerReservs reserv}) async {
     //once its onPressed, you have to disable all buttons and show a CircularProgressIndicator
@@ -248,10 +284,10 @@ class _Bookings extends State<Bookings>{
 
   buildChairText({required List<dynamic> chairs, required double size, required Color color}){
 
-    String text = "| ";
+    String text = "|";
 
     for (var chair in chairs) {
-      text = text + "${chair.toString()} |";
+      text = text + " ${chair.toString()} |";
     }
 
     return Text(
@@ -265,4 +301,25 @@ class _Bookings extends State<Bookings>{
     );
   }
 
+  buildFoodCard({required IconData icon, required int quant}){
+    return Card(
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(
+          color: Color(0xFF000000),
+          width: 1.7,
+        ),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      color: Colors.greenAccent,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Icon(icon, size: 32,),
+            buildText(text: ' - ${quant}', size: 32, color: const Color(0xFF000000))
+          ],
+        ),
+      ),
+    );
+  }
 }
