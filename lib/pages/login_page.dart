@@ -52,6 +52,13 @@ class _LoginPage extends State<LoginPage>{
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      side: const BorderSide(
+                        color: Color(0xFF000000),
+                        width: 1.7,
+                      ),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Column(

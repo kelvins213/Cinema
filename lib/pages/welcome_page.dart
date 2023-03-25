@@ -29,7 +29,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   decoration: BoxDecoration(
                     color: const Color(0xFFFCFFE7),
                     border: Border.all(
-                      width: 1.2,
+                      width: 1.7,
                     ),
                     borderRadius: BorderRadius.circular(12.0),
                   ),
@@ -44,12 +44,13 @@ class _WelcomePageState extends State<WelcomePage> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF03C988),
+                            side: const BorderSide(width: 1.2),
                           ),
                           onPressed: onPressed,
                           child: const Text(
                             "Login",
                             style: TextStyle(
-                              color: const Color(0xFFFCFFE7),
+                              color: Color(0xFFFCFFE7),
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
