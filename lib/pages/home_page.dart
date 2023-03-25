@@ -2,7 +2,7 @@ import 'package:cinema/data/api/get/films.dart';
 import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
 import 'package:cinema/data/shared_preferences/costumer_shared_preferences.dart';
 import 'package:cinema/domain/film.dart';
-import 'package:cinema/widget/bookings.dart';
+import 'package:cinema/widget/reservs.dart';
 import 'package:cinema/pages/login_page.dart';
 import 'package:cinema/widget/booking.dart';
 import 'package:flutter/cupertino.dart';

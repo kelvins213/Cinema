@@ -1,6 +1,6 @@
 import 'package:cinema/data/api/post/bookings.dart';
 import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
-import 'package:cinema/widget/bookings.dart';
+import 'package:cinema/widget/reservs.dart';
 import 'package:cinema/pages/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

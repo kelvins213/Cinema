@@ -10,7 +10,7 @@ class CostumerBookings{
 
   final String baseURL = "cin.onrender.com";
 
-  Future<List<dynamic>> getReservs() async {
+  Future<List<CostumerReservs>> getReservs() async {
 
     List<CostumerReservs> reservList = <CostumerReservs>[];
 
@@ -27,16 +27,12 @@ class CostumerBookings{
     var json = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
-      /*
       for (var i in json['costumer_bookings']) {
-        print(i);
         CostumerReservs reserv = CostumerReservs.fromJson(i);
-        print(reserv.name);
         reservList.add(reserv);
       }
-      */
     }
 
-    return json['costumer_bookings'];
+    return reservList;
   }
 }
