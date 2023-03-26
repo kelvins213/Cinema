@@ -115,38 +115,13 @@ class _CinemaRoom extends State<CinemaRoom>{
                     height: 100,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Column(
                           children: [
-                            Container(
-                              width: 200,
-                              child: Row(
-                                children: [
-                                  const Card(
-                                    color: Color(0xFF4C6793),
-                                    child: Icon(
-                                        Icons.event_seat
-                                    ),
-                                  ),
-                                  buildText(text: "- Available", size: 18),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              width: 200,
-                              child: Row(
-                                children: [
-                                  const Card(
-                                    color: Color(0xFFDC0000),
-                                    child: Icon(
-                                        Icons.event_seat
-                                    ),
-                                  ),
-                                  buildText(text: "- Non available", size: 18),
-                                ],
-                              ),
-                            ),
+                            buildContainerRoom(text: "- Available", color: const Color(0xFF4C6793)),
+                            buildContainerRoom(text: "- Non avaliable", color: const Color(0xFFDC0000)),
+                            buildContainerRoom(text: "- Selected", color: const Color(0xFFEDE9D5)),
                           ],
                         ),
                         ElevatedButton(
@@ -231,4 +206,22 @@ class _CinemaRoom extends State<CinemaRoom>{
       ),
     );
   }
+
+  buildContainerRoom({required String text, required Color color}){
+    return Container(
+      width: 200,
+      child: Row(
+        children: [
+          Card(
+            color: color,
+            child: const Icon(
+                Icons.event_seat
+            ),
+          ),
+          buildText(text: '$text', size: 18),
+        ],
+      ),
+    );
+  }
+
 }

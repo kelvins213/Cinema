@@ -49,10 +49,10 @@ class Booking{
 
   Future<void> setFood() async {
     Costumer costumer = await CostumerSharedPreferencesHelper().getCostumerData();
+    Film film = await BookingSharedPreferencesHelper().getFilmInfos();
     Food food = await BookingSharedPreferencesHelper().getFoodInfos();
 
-    Uri url = Uri.https(baseURL, '/setFood/${costumer.email}/${food.quantPopkorn}/${food.quantSoda}');
+    Uri url = Uri.https(baseURL, '/setFood/${costumer.email}/${film.room}/${food.quantPopkorn}/${food.quantSoda}');
     Response response = await http.post(url);
-
   }
 }

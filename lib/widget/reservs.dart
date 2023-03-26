@@ -3,7 +3,6 @@ import 'package:cinema/data/api/get/bookings.dart';
 import 'package:cinema/data/shared_preferences/delete_booking_shared_preferences.dart';
 import 'package:cinema/domain/bookings.dart';
 import 'package:cinema/domain/food.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Bookings extends StatefulWidget {
@@ -17,12 +16,8 @@ class Bookings extends StatefulWidget {
 class _Bookings extends State<Bookings>{
 
   @override
-
   Future<List<CostumerReservs>> reservs = CostumerBookings().getReservs();
   Future<Food> foodReserved = CostumerBookings().getFood();
-
-
-
   List<IconData> icons = [Icons.date_range, Icons.hourglass_bottom, Icons.living];
 
   Widget build(BuildContext context){
@@ -263,9 +258,11 @@ class _Bookings extends State<Bookings>{
 
     await DeleteBooking().deleteBooking();
     await DeleteBooking().deleteWatcher();
+    await DeleteBooking().deleteFood();
 
     setState(() {
       reservs = CostumerBookings().getReservs();
+      foodReserved = CostumerBookings().getFood();
     });
   }
 

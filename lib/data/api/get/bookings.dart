@@ -45,9 +45,11 @@ class CostumerBookings{
     Response response = await http.get(url);
 
     print(response.statusCode);
+    print(response.body);
 
     var json = jsonDecode(response.body);
     Food food = Food.fromJson(json);
+    print(food);
 
     return food;
   }

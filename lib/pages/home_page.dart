@@ -41,10 +41,10 @@ class _CinemaHomePage extends State<CinemaHomePage>{
               ),
               buildText(text: "Films Available", size: 24, color: const Color(0xFFEEEEEE)),
               InkWell(
-                child: Icon(
+                child: const Icon(
                   Icons.exit_to_app,
                   size: 32,
-                  color: const Color(0xFFFF1E1E),
+                  color: Color(0xFFFF1E1E),
                 ),
                 onTap: onTapLogOff,
               ),
@@ -95,7 +95,7 @@ class _CinemaHomePage extends State<CinemaHomePage>{
                 itemCount: films.length,
               );
             } else {
-              return Center(child: const CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
           },
         ),

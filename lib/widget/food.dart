@@ -92,17 +92,22 @@ class _CinemaFood extends State<CinemaFood>{
                 height: 600,
                 width: 298,
                 child: Card(
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(
+                      color: Color(0xFF000000),
+                      width: 1.2,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.network("https://st2.depositphotos.com/5823990/11304/i/450/depositphotos_113044302-stock-photo-glass-bowl-with-popcorn-isolated.jpg", width: 158,),
                         ],
                       ),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -193,7 +198,6 @@ class _CinemaFood extends State<CinemaFood>{
                           ),
                         ],
                       ),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -223,7 +227,7 @@ class _CinemaFood extends State<CinemaFood>{
                 ),
               ),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(
@@ -289,6 +293,7 @@ class _CinemaFood extends State<CinemaFood>{
   }
 
   showConfirmation(){
+    //onPressed: _isButtonDisabled ? null : _incrementCounter,
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -325,6 +330,8 @@ class _CinemaFood extends State<CinemaFood>{
                         backgroundColor: const Color(0xFFDC0000),
                       ),
                     ),
+
+                    //onPressed: _isButtonDisabled ? null : _incrementCounter,
                     ElevatedButton(
                       child: buildText(text: "Ok", size: 24, color: const Color(0xFFEEEEEE)),
                       onPressed: () async {

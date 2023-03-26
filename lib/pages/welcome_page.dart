@@ -1,7 +1,6 @@
 import 'package:cinema/data/shared_preferences/costumer_shared_preferences.dart';
 import 'package:cinema/pages/home_page.dart';
 import 'package:cinema/pages/login_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatefulWidget {
