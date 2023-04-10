@@ -2,10 +2,8 @@ import 'package:cinema/data/api/get/search_costumer.dart';
 import 'package:cinema/data/shared_preferences/costumer_shared_preferences.dart';
 import 'package:cinema/domain/costumer.dart';
 import 'package:cinema/pages/create_account.dart';
-import 'package:cinema/pages/fims_avaliable.dart';
 import 'package:cinema/pages/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_flushbar/flutter_flushbar.dart';
 
 class LoginPage extends StatefulWidget{
 

@@ -3,6 +3,7 @@ import 'package:cinema/pages/fims_avaliable.dart';
 import 'package:cinema/pages/preview.dart';
 import 'package:cinema/widget/reservs.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class CinemaHomePage extends StatefulWidget {
   const CinemaHomePage({Key? key}) : super(key: key);
@@ -25,23 +26,30 @@ class _CinemaHomePageState extends State<CinemaHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[currentlyPage],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: currentlyPage,
-        onTap: (index) {
-          setState(() {
-            currentlyPage = index;
-          });
-        },
-        items: const <BottomNavigationBarItem> [
-          BottomNavigationBarItem(icon: Icon(Icons.theaters_outlined), label: 'Films'),
-          BottomNavigationBarItem(icon: Icon(Icons.schedule), label: 'Previews'),
-          BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: 'Reservs'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Account'),
-        ],
-        selectedItemColor: const Color(0xFF16FF00),
-        unselectedItemColor: const Color(0xFFFEFCF3),
-        backgroundColor: const Color(0xFF00092C),
+      bottomNavigationBar: Container(
+        color: const Color(0xFF00092C),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+          child: GNav(
+            backgroundColor: const Color(0xFF00092C),
+            color: const Color(0xFFEEEEEE).withOpacity(0.5),
+            activeColor: const Color(0xFFEEEEEE),
+            tabBackgroundColor: const Color(0xFF808080),
+            padding: const EdgeInsets.all(12),
+            gap: 8,
+            tabs: const <GButton>[
+              GButton(icon: Icons.theaters_outlined, text: 'Films',),
+              GButton(icon: Icons.schedule, text: 'Previews',),
+              GButton(icon: Icons.menu_book, text: 'Bookings',),
+              GButton(icon: Icons.settings, text: 'Profile',),
+            ],
+            onTabChange: (index){
+              setState(() {
+                currentlyPage = index;
+              });
+            },
+          ),
+        ),
       ),
     );
   }
