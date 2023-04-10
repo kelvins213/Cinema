@@ -4,7 +4,7 @@ import 'package:cinema/domain/film.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
-class FilmsAvailable{
+class FilmsInContext{
 
   final String baseURL = "cin.onrender.com";
 

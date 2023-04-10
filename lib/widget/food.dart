@@ -1,7 +1,7 @@
 import 'package:cinema/data/api/post/bookings.dart';
 import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
 import 'package:cinema/widget/reservs.dart';
-import 'package:cinema/pages/home_page.dart';
+import 'package:cinema/pages/fims_avaliable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -346,7 +346,7 @@ class _CinemaFood extends State<CinemaFood>{
                           context,
                           MaterialPageRoute(
                               builder: (context){
-                                return const CinemaHomePage();
+                                return const FilmsAvailable();
                               }
                           ),
                         );

@@ -2,6 +2,7 @@ import 'package:cinema/data/api/get/search_costumer.dart';
 import 'package:cinema/data/shared_preferences/costumer_shared_preferences.dart';
 import 'package:cinema/domain/costumer.dart';
 import 'package:cinema/pages/create_account.dart';
+import 'package:cinema/pages/fims_avaliable.dart';
 import 'package:cinema/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_flushbar/flutter_flushbar.dart';
@@ -183,7 +184,6 @@ class _LoginPage extends State<LoginPage>{
     if (_formKey.currentState!.validate()) {
       final costumer = Costumer(name: nameController.text, email: emailController.text, password: passwordController.text, logged: true);
       await CostumerSharedPreferencesHelper.storeCostumerData(costumer: costumer);
-
       bool logged = await Login().searchForAccount();
       await CostumerSharedPreferencesHelper().storeLoginState(logged: logged);
       bool state = await CostumerSharedPreferencesHelper().getLoginState();
