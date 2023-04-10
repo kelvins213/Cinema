@@ -1,3 +1,4 @@
+import 'package:cinema/pages/home_page.dart';
 import 'package:cinema/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
 

@@ -22,10 +22,9 @@ class _Bookings extends State<Bookings>{
 
   Widget build(BuildContext context){
     return Scaffold(
-      backgroundColor: const Color(0xFF00092C),
+      backgroundColor: const Color(0xFF4C6793), //change this one
       appBar: AppBar(
-        backgroundColor: const Color(0xFF3A98B9),
-        centerTitle: true,
+        backgroundColor: const Color(0xFF00092C),
         title: buildText(text: "Bookings", size: 24, color: const Color(0xFFFEFCF3)),
       ),
       body: ListView(

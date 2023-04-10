@@ -16,7 +16,11 @@ class _CostumerProfileState extends State<CostumerProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF000000),
+      backgroundColor: const Color(0xFF4C6793),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF00092C),
+        title: buildText(text: "Profile", size: 24, color: const Color(0xFFEEEEEE)),
+      ),
       body: ListView(
        children: [
          FutureBuilder<Costumer>(
