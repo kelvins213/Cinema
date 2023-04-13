@@ -61,18 +61,32 @@ class _PreviewsState extends State<Previews> {
                                           children: [
                                             Image.network(previews[index].thumbLink, height: 270,),
                                             const SizedBox(height: 9,),
-                                            Card(
-                                              shape: RoundedRectangleBorder(
-                                                side: const BorderSide(
-                                                  color: Color(0xFF000000),
-                                                  width: 1.0,
+
+                                            SizedBox(
+                                              height: 44,
+                                              width: 180,
+                                              child: SingleChildScrollView(
+                                                scrollDirection: Axis.horizontal,
+                                                child: Card(
+                                                  shape: RoundedRectangleBorder(
+                                                    side: const BorderSide(
+                                                      color: Color(0xFF000000),
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius: BorderRadius.circular(8.0),
+                                                  ),
+                                                  color: Colors.greenAccent,
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.all(4.0),
+                                                    child: Row(
+                                                      children: [
+                                                        const Icon(Icons.emergency_recording),
+                                                        buildText(text: previews[index].name, size: 24, color: const Color(0xFF000000)),
+                                                      ],
+                                                    ),
+                                                  ),
                                                 ),
-                                                borderRadius: BorderRadius.circular(8.0),
                                               ),
-                                              color: Colors.greenAccent,
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(4.0),
-                                                child: buildText(text: previews[index].name, size: 24, color: const Color(0xFF000000)),),
                                             ),
                                           ],
                                         ),
@@ -96,18 +110,31 @@ class _PreviewsState extends State<Previews> {
                                                 ),
                                               ),
                                               const SizedBox(height: 9,),
-                                              Card(
-                                                shape: RoundedRectangleBorder(
-                                                  side: const BorderSide(
-                                                    color: Color(0xFF000000),
-                                                    width: 1.0,
+                                              SizedBox(
+                                                height: 44,
+                                                width: 180,
+                                                child: SingleChildScrollView(
+                                                  scrollDirection: Axis.horizontal,
+                                                  child: Card(
+                                                    shape: RoundedRectangleBorder(
+                                                      side: const BorderSide(
+                                                        color: Color(0xFF000000),
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius: BorderRadius.circular(8.0),
+                                                    ),
+                                                    color: Colors.greenAccent,
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(4.0),
+                                                      child: Row(
+                                                        children: [
+                                                          const Icon(Icons.date_range),
+                                                          buildText(text: previews[index].date, size: 24, color: const Color(0xFF000000)),
+                                                        ],
+                                                      ),
+                                                    ),
                                                   ),
-                                                  borderRadius: BorderRadius.circular(8.0),
                                                 ),
-                                                color: Colors.greenAccent,
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(4.0),
-                                                  child: buildText(text: previews[index].date, size: 24, color: const Color(0xFF000000)),),
                                               ),
                                             ],
                                           ),

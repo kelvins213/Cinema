@@ -31,7 +31,7 @@ class _CostumerProfileState extends State<CostumerProfile> {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
-                    color: Colors.greenAccent,
+                    color: const Color(0xFF000000),
                     child: Column(
                       children: [
                         const CircleAvatar(
