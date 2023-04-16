@@ -163,7 +163,7 @@ class _PreviewsState extends State<Previews> {
   buildText({required String text, required double size, required Color color}){
     return Text(
       text,
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.justify,
       style: TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: size,

@@ -27,27 +27,35 @@ class _CinemaHomePageState extends State<CinemaHomePage> {
     return Scaffold(
       body: pages[currentlyPage],
       bottomNavigationBar: Container(
-        color: const Color(0xFF00092C),
+        color: const Color(0xFF4C6793),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-          child: GNav(
-            backgroundColor: const Color(0xFF00092C),
-            color: const Color(0xFFEEEEEE).withOpacity(0.5),
-            activeColor: const Color(0xFFEEEEEE),
-            tabBackgroundColor: const Color(0xFF808080),
-            padding: const EdgeInsets.all(12),
-            gap: 8,
-            tabs: const <GButton>[
-              GButton(icon: Icons.theaters_outlined, text: 'Films',),
-              GButton(icon: Icons.schedule, text: 'Previews',),
-              GButton(icon: Icons.menu_book, text: 'Bookings',),
-              GButton(icon: Icons.settings, text: 'Profile',),
-            ],
-            onTabChange: (index){
-              setState(() {
-                currentlyPage = index;
-              });
-            },
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: const Color(0xFF000000), width: 1.2),
+              borderRadius: BorderRadius.circular(6.0),
+              color: const Color(0xFFEEEEEE).withOpacity(0.3),
+            ),
+            child: GNav(
+              backgroundColor: const Color(0xFFEEEEEE).withOpacity(0.2), //essa e a cor
+              color: const Color(0xFF000000),
+              activeColor: const Color(0xFFEEEEEE),
+              tabBackgroundColor: Colors.grey.shade800, //0xFF808080
+              padding: const EdgeInsets.all(12),
+              tabMargin: const EdgeInsets.all(12),
+              gap: 8,
+              tabs: const <GButton>[
+                GButton(icon: Icons.theaters_outlined, text: 'Films'),
+                GButton(icon: Icons.schedule, text: 'Previews',),
+                GButton(icon: Icons.menu_book, text: 'Bookings',),
+                GButton(icon: Icons.settings, text: 'Profile',),
+              ],
+              onTabChange: (index){
+                setState(() {
+                  currentlyPage = index;
+                });
+              },
+            ),
           ),
         ),
       ),
