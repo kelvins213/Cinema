@@ -22,7 +22,7 @@ class _Bookings extends State<Bookings>{
 
   Widget build(BuildContext context){
     return Scaffold(
-      backgroundColor: const Color(0xFF4C6793), //change this one
+      backgroundColor: const Color(0xFF4C6793),
       appBar: AppBar(
         backgroundColor: const Color(0xFF00092C),
         title: buildText(text: "Bookings", size: 24, color: const Color(0xFFFEFCF3)),
@@ -71,7 +71,6 @@ class _Bookings extends State<Bookings>{
                                         child: Image.network(reservedFilms[index].thumbLink, width: 200,),
                                       ),
                                       const SizedBox(height: 12,),
-                                      //the container is the one
                                       Container(
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color(0xFF000000), width: 1.2),

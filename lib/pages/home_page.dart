@@ -29,18 +29,18 @@ class _CinemaHomePageState extends State<CinemaHomePage> {
       bottomNavigationBar: Container(
         color: const Color(0xFF4C6793),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xFF000000), width: 1.2),
+              border: Border.all(color: const Color(0xFF000000), width: 1.0),
               borderRadius: BorderRadius.circular(6.0),
               color: const Color(0xFFEEEEEE).withOpacity(0.3),
             ),
             child: GNav(
-              backgroundColor: const Color(0xFFEEEEEE).withOpacity(0.2), //essa e a cor
+              backgroundColor: const Color(0xFFEEEEEE).withOpacity(0.2),
               color: const Color(0xFF000000),
               activeColor: const Color(0xFFEEEEEE),
-              tabBackgroundColor: Colors.grey.shade800, //0xFF808080
+              tabBackgroundColor: Colors.grey.shade800,
               padding: const EdgeInsets.all(12),
               tabMargin: const EdgeInsets.all(12),
               gap: 8,
