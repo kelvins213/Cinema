@@ -27,7 +27,7 @@ class _CinemaHomePageState extends State<CinemaHomePage> {
     return Scaffold(
       body: pages[currentlyPage],
       bottomNavigationBar: Container(
-        color: const Color(0xFF4C6793),
+        color: const Color(0xFF000000),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Container(
@@ -45,7 +45,7 @@ class _CinemaHomePageState extends State<CinemaHomePage> {
               tabMargin: const EdgeInsets.all(12),
               gap: 8,
               tabs: const <GButton>[
-                GButton(icon: Icons.theaters_outlined, text: 'Films'),
+                GButton(icon: Icons.theaters_outlined, text: 'Movies'),
                 GButton(icon: Icons.schedule, text: 'Previews',),
                 GButton(icon: Icons.menu_book, text: 'Bookings',),
                 GButton(icon: Icons.settings, text: 'Profile',),

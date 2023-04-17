@@ -22,7 +22,7 @@ class _BookingFilm extends State<BookingFilm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF00092C),
+      backgroundColor: const Color(0xFF000000),
       appBar: AppBar(
         backgroundColor: const Color(0xFF4C6793),
         centerTitle: true,

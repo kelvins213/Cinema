@@ -33,7 +33,7 @@ class BookingSharedPreferencesHelper{
     String filmName = prefBooking.getString("filmName") ?? "invalid";
     int roomNumber = prefBooking.getInt("roomNumber") ?? 0;
 
-    Film film = Film(thumbLink: "", name: filmName, synopsis: "", date: "", time: "", room: roomNumber);
+    Film film = Film(duration: "", gender: "", thumbLink: "", name: filmName, synopsis: "", date: "", time: "", room: roomNumber);
 
     return film;
   }

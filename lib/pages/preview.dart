@@ -61,7 +61,6 @@ class _PreviewsState extends State<Previews> {
                                           children: [
                                             Image.network(previews[index].thumbLink, height: 270,),
                                             const SizedBox(height: 9,),
-
                                             SizedBox(
                                               height: 44,
                                               width: 180,
