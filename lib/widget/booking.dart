@@ -101,14 +101,14 @@ class _BookingFilm extends State<BookingFilm> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       buildText(text: film.name, size: 24, weight: FontWeight.bold),
-                      Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        color: const Color(0xFF675D50),
-                        child: Padding(
-                          padding: const EdgeInsets.all(9.2),
-                          child: buildText(text: film.gender, size: 18, weight: FontWeight.w300),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            buildCard(text: film.gender, icon: Icons.history_edu_outlined),
+                            buildCard(text: film.date, icon: Icons.date_range),
+                            buildCard(text: film.room, icon: Icons.living),
+                          ],
                         ),
                       ),
                       SizedBox(
@@ -160,4 +160,24 @@ class _BookingFilm extends State<BookingFilm> {
       ),
     );
   }
+
+  buildCard({required dynamic text, required IconData icon}){
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      color: const Color(0xFF675D50),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Icon(icon, color: const Color(0xFFEEEEEE),),
+            const SizedBox(width: 4,),
+            buildText(text: '$text', size: 18, weight: FontWeight.w300)
+          ],
+        ),
+      ),
+    );
+  }
+
 }
