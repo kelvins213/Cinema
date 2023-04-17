@@ -1,5 +1,3 @@
-# Updated source code in 'cinema_app_with_api' branch
-
 # Cinema
 
 Cinema-api Branch:
