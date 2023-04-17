@@ -6,9 +6,7 @@ import 'package:cinema/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget{
-
   const LoginPage({Key? key,}) : super(key: key);
-
   @override
   _LoginPage createState() => _LoginPage();
 }
