@@ -15,42 +15,51 @@ class _CostumerProfileState extends State<CostumerProfile> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF4C6793),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF00092C),
-        title: buildText(text: "Profile", size: 24, color: const Color(0xFFEEEEEE)),
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFF950101),  Color(0xFF3D0000), Color(0xFF000000)],
+        ),
       ),
-      body: ListView(
-       children: [
-         FutureBuilder<Costumer>(
-            future: costumer,
-             builder: (context, snapshot){
-              if (snapshot.hasData) {
-                Costumer cos = snapshot.data!;
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    color: const Color(0xFF000000),
-                    child: Column(
-                      children: [
-                        const CircleAvatar(
-                          backgroundImage: NetworkImage("https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg"),
-                          child: Text(''),
-                        ),
-                        buildText(text: cos.name, size: 24, color: const Color(0xFFEEEEEE)),
-                        buildText(text: cos.email, size: 24, color: const Color(0xFFEEEEEE)),
-                        buildText(text: cos.password, size: 24, color: const Color(0xFFEEEEEE)),
-                      ],
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF950101),
+          title: buildText(text: "Profile", size: 24, color: const Color(0xFFEEEEEE)),
+        ),
+        body: ListView(
+         children: [
+           FutureBuilder<Costumer>(
+              future: costumer,
+               builder: (context, snapshot){
+                if (snapshot.hasData) {
+                  Costumer cos = snapshot.data!;
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      color: const Color(0xFF000000),
+                      child: Column(
+                        children: [
+                          const CircleAvatar(
+                            backgroundImage: NetworkImage("https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg"),
+                            child: Text(''),
+                          ),
+                          buildText(text: cos.name, size: 24, color: const Color(0xFFEEEEEE)),
+                          buildText(text: cos.email, size: 24, color: const Color(0xFFEEEEEE)),
+                          buildText(text: cos.password, size: 24, color: const Color(0xFFEEEEEE)),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              } else {
-                return const Center(child: CircularProgressIndicator(),);
+                  );
+                } else {
+                  return const Center(child: CircularProgressIndicator(),);
+                }
               }
-            }
-         ),
-       ],
+           ),
+         ],
+        ),
       ),
     );
   }

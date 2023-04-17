@@ -15,99 +15,59 @@ class _PreviewsState extends State<Previews> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF4C6793),
-      appBar: AppBar(
-        title: buildText(text: "Previews", size: 24, color: const Color(0xFFEEEEEE)),
-        backgroundColor: const Color(0xFF00092C),
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFF950101),  Color(0xFF3D0000), Color(0xFF000000)],
+        ),
       ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FutureBuilder<List<CinemaPreview>>(
-                future: prevs,
-                builder: (context, snapshot){
-                  if (snapshot.hasData) {
-                    List<CinemaPreview> previews = snapshot.data ?? [];
-                    return ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      separatorBuilder: (context, index){
-                        return const SizedBox(height: 12,);
-                      },
-                      itemBuilder: (context, index) {
-                        return Card(
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(
-                              color: Color(0xFF000000),
-                              width: 1.0,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: buildText(text: "Previews", size: 24, color: const Color(0xFFEEEEEE)),
+          backgroundColor: const Color(0xFF950101),
+        ),
+        body: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FutureBuilder<List<CinemaPreview>>(
+                  future: prevs,
+                  builder: (context, snapshot){
+                    if (snapshot.hasData) {
+                      List<CinemaPreview> previews = snapshot.data ?? [];
+                      return ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        separatorBuilder: (context, index){
+                          return const SizedBox(height: 12,);
+                        },
+                        itemBuilder: (context, index) {
+                          return Card(
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(
+                                color: Color(0xFF000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Column(
-                              children: [
-                                Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 344,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          children: [
-                                            Image.network(previews[index].thumbLink, height: 270,),
-                                            const SizedBox(height: 9,),
-                                            SizedBox(
-                                              height: 44,
-                                              width: 180,
-                                              child: SingleChildScrollView(
-                                                scrollDirection: Axis.horizontal,
-                                                child: Card(
-                                                  shape: RoundedRectangleBorder(
-                                                    side: const BorderSide(
-                                                      color: Color(0xFF000000),
-                                                      width: 1.0,
-                                                    ),
-                                                    borderRadius: BorderRadius.circular(8.0),
-                                                  ),
-                                                  color: Colors.greenAccent,
-                                                  child: Padding(
-                                                    padding: const EdgeInsets.all(4.0),
-                                                    child: Row(
-                                                      children: [
-                                                        const Icon(Icons.emergency_recording),
-                                                        buildText(text: previews[index].name, size: 24, color: const Color(0xFF000000)),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Expanded(
-                                          child: Column(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 344,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
                                             children: [
-                                              Padding(
-                                                padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.greenAccent,
-                                                    border: Border.all(color: const Color(0xFF000000), width: 1.2),
-                                                    borderRadius: BorderRadius.circular(6.0),
-                                                  ),
-                                                  height: 270,
-                                                  child: ListView(
-                                                    children: [
-                                                      buildText(text: previews[index].synopsis, size: 24, color: const Color(0xFF000000)),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
+                                              Image.network(previews[index].thumbLink, height: 270,),
                                               const SizedBox(height: 9,),
                                               SizedBox(
                                                 height: 44,
@@ -127,8 +87,8 @@ class _PreviewsState extends State<Previews> {
                                                       padding: const EdgeInsets.all(4.0),
                                                       child: Row(
                                                         children: [
-                                                          const Icon(Icons.date_range),
-                                                          buildText(text: previews[index].date, size: 24, color: const Color(0xFF000000)),
+                                                          const Icon(Icons.emergency_recording),
+                                                          buildText(text: previews[index].name, size: 24, color: const Color(0xFF000000)),
                                                         ],
                                                       ),
                                                     ),
@@ -137,24 +97,73 @@ class _PreviewsState extends State<Previews> {
                                               ),
                                             ],
                                           ),
-                                        ),
-                                      ],
+                                          Expanded(
+                                            child: Column(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.greenAccent,
+                                                      border: Border.all(color: const Color(0xFF000000), width: 1.2),
+                                                      borderRadius: BorderRadius.circular(6.0),
+                                                    ),
+                                                    height: 270,
+                                                    child: ListView(
+                                                      children: [
+                                                        buildText(text: previews[index].synopsis, size: 24, color: const Color(0xFF000000)),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 9,),
+                                                SizedBox(
+                                                  height: 44,
+                                                  width: 180,
+                                                  child: SingleChildScrollView(
+                                                    scrollDirection: Axis.horizontal,
+                                                    child: Card(
+                                                      shape: RoundedRectangleBorder(
+                                                        side: const BorderSide(
+                                                          color: Color(0xFF000000),
+                                                          width: 1.0,
+                                                        ),
+                                                        borderRadius: BorderRadius.circular(8.0),
+                                                      ),
+                                                      color: Colors.greenAccent,
+                                                      child: Padding(
+                                                        padding: const EdgeInsets.all(4.0),
+                                                        child: Row(
+                                                          children: [
+                                                            const Icon(Icons.date_range),
+                                                            buildText(text: previews[index].date, size: 24, color: const Color(0xFF000000)),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                      itemCount: previews.length,);
-                  } else {
-                    return const Center(child: CircularProgressIndicator(),);
+                          );
+                        },
+                        itemCount: previews.length,);
+                    } else {
+                      return const Center(child: CircularProgressIndicator(),);
+                    }
                   }
-                }
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

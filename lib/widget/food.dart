@@ -1,7 +1,7 @@
 import 'package:cinema/data/api/post/bookings.dart';
 import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
 import 'package:cinema/pages/home_page.dart';
-import 'package:cinema/widget/reservs.dart';
+import 'package:cinema/pages/reservs.dart';
 import 'package:cinema/pages/fims_avaliable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -39,221 +39,230 @@ class _CinemaFood extends State<CinemaFood>{
   int sodaPrice = 2;
 
   Widget build(BuildContext context){
-    return Scaffold(
-      backgroundColor: const Color(0xFF4C6793),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF00092C),
-        centerTitle: true,
-        title: buildText(text: "Food", size: 24, color: const Color(0xFFEEEEEE)),
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFF950101),  Color(0xFF3D0000), Color(0xFF000000)],
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: ListView(
-          children: [
-            const SizedBox(height: 16),
-            Container(
-              height: 80,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const Card(
-                    color: Color(0xFFEDE9D5),
-                    child: Icon(
-                      Icons.event_seat,
-                      size: 50,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF950101),
+          centerTitle: true,
+          title: buildText(text: "Food", size: 24, color: const Color(0xFFEEEEEE)),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: ListView(
+            children: [
+              const SizedBox(height: 16),
+              Container(
+                height: 80,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Card(
+                      color: Color(0xFFEDE9D5),
+                      child: Icon(
+                        Icons.event_seat,
+                        size: 50,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    child: Card(
-                      color: const Color(0xFF000000),
-                      child: Padding(
-                        padding: const EdgeInsets.all(18.0),
-                        child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: chairs.length,
-                          itemBuilder: (context, index){
-                            String text = chairs[index].toString();
-                            return buildText(text: text, size: 24, color: const Color(0xFFEEEEEE));
-                            },
-                          separatorBuilder: (context, index){
-                            return const SizedBox(width: 8);
-                            },
+                    SizedBox(
+                      child: Card(
+                        color: const Color(0xFF000000),
+                        child: Padding(
+                          padding: const EdgeInsets.all(18.0),
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: chairs.length,
+                            itemBuilder: (context, index){
+                              String text = chairs[index].toString();
+                              return buildText(text: text, size: 24, color: const Color(0xFFEEEEEE));
+                              },
+                            separatorBuilder: (context, index){
+                              return const SizedBox(width: 8);
+                              },
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            Center(
-              child: SizedBox(
-                height: 600,
-                width: 298,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    side: const BorderSide(
-                      color: Color(0xFF000000),
-                      width: 1.2,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.network("https://st2.depositphotos.com/5823990/11304/i/450/depositphotos_113044302-stock-photo-glass-bowl-with-popcorn-isolated.jpg", width: 158,),
-                        ],
+              const SizedBox(height: 16),
+              Center(
+                child: SizedBox(
+                  height: 600,
+                  width: 298,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(
+                        color: Color(0xFF000000),
+                        width: 1.2,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF00092C),
-                            ),
-                            onPressed: () => onPressed(value: - popPrice, type: "popcorn", operation: "-"),
-                            child: const Icon(
-                                Icons.remove
-                            ),
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF00092C),
-                            ),
-                            onPressed: () => onPressed(value: popPrice, type: "popcorn", operation: "+"),
-                            child: const Icon(
-                                Icons.add
-                            ),
-                          ),
-                          Card(
-                            color: const Color(0xFF03C988),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  const Icon(Icons.monetization_on),
-                                  Text(
-                                    '$totalPopcornPrice',
-                                    style: const TextStyle(
-                                      fontSize: 24,
-                                      color: Color(0xFF000000),
-                                    ),
-                                  ),
-                                ],
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.network("https://st2.depositphotos.com/5823990/11304/i/450/depositphotos_113044302-stock-photo-glass-bowl-with-popcorn-isolated.jpg", width: 158,),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF00092C),
+                              ),
+                              onPressed: () => onPressed(value: - popPrice, type: "popcorn", operation: "-"),
+                              child: const Icon(
+                                  Icons.remove
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.network("https://www.emporiofreicaneca.com.br/wp-content/uploads/2022/11/Coca-Cola-350ml.png", width: 158,),
-                        ],
-                      ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF00092C),
+                              ),
+                              onPressed: () => onPressed(value: popPrice, type: "popcorn", operation: "+"),
+                              child: const Icon(
+                                  Icons.add
+                              ),
+                            ),
+                            Card(
+                              color: const Color(0xFF03C988),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    const Icon(Icons.monetization_on),
+                                    Text(
+                                      '$totalPopcornPrice',
+                                      style: const TextStyle(
+                                        fontSize: 24,
+                                        color: Color(0xFF000000),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.network("https://www.emporiofreicaneca.com.br/wp-content/uploads/2022/11/Coca-Cola-350ml.png", width: 158,),
+                          ],
+                        ),
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF00092C),
-                            ),
-                            onPressed: () => onPressed(value: - sodaPrice, type: "soda", operation: "-"),
-                            child: const Icon(
-                              Icons.remove,
-                            ),
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF00092C),
-                            ),
-                            onPressed: () => onPressed(value: sodaPrice, type: "soda", operation: "+"),
-                            child: const Icon(
-                                Icons.add
-                            ),
-                          ),
-                          Card(
-                            color: const Color(0xFF03C988),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.monetization_on),
-                                  Text(
-                                    '$totalSodaPrice',
-                                    style: const TextStyle(
-                                      fontSize: 24,
-                                      color: Color(0xFF000000),
-                                    ),
-                                  ),
-                                ],
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF00092C),
+                              ),
+                              onPressed: () => onPressed(value: - sodaPrice, type: "soda", operation: "-"),
+                              child: const Icon(
+                                Icons.remove,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Card(
-                            color: const Color(0xFF03C988),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Icon(Icons.monetization_on),
-                                  Text(
-                                    '$totalPrice',
-                                    style: const TextStyle(
-                                      fontSize: 24,
-                                      color: Color(0xFF000000),
-                                    ),
-                                  ),
-                                ],
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF00092C),
+                              ),
+                              onPressed: () => onPressed(value: sodaPrice, type: "soda", operation: "+"),
+                              child: const Icon(
+                                  Icons.add
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            Card(
+                              color: const Color(0xFF03C988),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    const Icon(Icons.monetization_on),
+                                    Text(
+                                      '$totalSodaPrice',
+                                      style: const TextStyle(
+                                        fontSize: 24,
+                                        color: Color(0xFF000000),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Card(
+                              color: const Color(0xFF03C988),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Icon(Icons.monetization_on),
+                                    Text(
+                                      '$totalPrice',
+                                      style: const TextStyle(
+                                        fontSize: 24,
+                                        color: Color(0xFF000000),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 12),
-            Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5.0)
+              const SizedBox(height: 12),
+              Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(5.0)
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ElevatedButton(
+                      onPressed: (){
+                        showConfirmation();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF03C988),
+                      ),
+                      child: const Icon(
+                        Icons.check_circle,
+                        size: 50,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  ElevatedButton(
-                    onPressed: (){
-                      showConfirmation();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF03C988),
-                    ),
-                    child: const Icon(
-                      Icons.check_circle,
-                      size: 50,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

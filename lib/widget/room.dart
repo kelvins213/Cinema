@@ -40,104 +40,113 @@ class _CinemaRoom extends State<CinemaRoom>{
   Film get film => widget.film;
 
   Widget build(BuildContext context){
-    return Scaffold(
-      backgroundColor: const Color(0xFF00092C),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF4C6793),
-        centerTitle: true,
-        title: buildText(text: "Cinema Room", size: 24),
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFF950101),  Color(0xFF3D0000), Color(0xFF000000)],
+        ),
       ),
-      body: SafeArea(
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Container(
-                    height: 600,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        SizedBox(
-                          width: 300,
-                          height: 30,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Color(0xFF4C6793),
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(360),
-                                topRight: Radius.circular(360),
-                                bottomLeft: Radius.circular(40),
-                                bottomRight: Radius.circular(40),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF950101),
+          centerTitle: true,
+          title: buildText(text: "Cinema Room", size: 24),
+        ),
+        body: SafeArea(
+          child: ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 600,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          SizedBox(
+                            width: 300,
+                            height: 30,
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                color: Color(0xFF4C6793),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(360),
+                                  topRight: Radius.circular(360),
+                                  bottomLeft: Radius.circular(40),
+                                  bottomRight: Radius.circular(40),
+                                ),
+                              ),
+                              child: const Icon(
+                                Icons.videocam
                               ),
                             ),
-                            child: const Icon(
-                              Icons.videocam
-                            ),
                           ),
-                        ),
-                        FutureBuilder <List<dynamic>>(
-                          future: chairsBooked,
-                          builder: (context, snapshot){
-                            if (snapshot.hasData) {
-                              List<dynamic> chairs = snapshot.data ?? [];
-                              generateColorList(chairsBooked: chairs);
-                              return GridView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 8,
-                                ),
-                                itemBuilder: (context, index){
-                                  return InkWell(
-                                    onTap: () => onTap(chairIndex: index),
-                                    child: Card(
-                                      color: colors[index],
-                                      child: const Icon(
-                                          Icons.event_seat
+                          FutureBuilder <List<dynamic>>(
+                            future: chairsBooked,
+                            builder: (context, snapshot){
+                              if (snapshot.hasData) {
+                                List<dynamic> chairs = snapshot.data ?? [];
+                                generateColorList(chairsBooked: chairs);
+                                return GridView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 8,
+                                  ),
+                                  itemBuilder: (context, index){
+                                    return InkWell(
+                                      onTap: () => onTap(chairIndex: index),
+                                      child: Card(
+                                        color: colors[index],
+                                        child: const Icon(
+                                            Icons.event_seat
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                },
-                                itemCount: numbers.length,
-                              );
-                            } else {
-                              return const CircularProgressIndicator();
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 24,),
-                  Container(
-                    height: 100,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            buildContainerRoom(text: "- Available", color: const Color(0xFF4C6793)),
-                            buildContainerRoom(text: "- Non avaliable", color: const Color(0xFFDC0000)),
-                            buildContainerRoom(text: "- Selected", color: const Color(0xFFEDE9D5)),
-                          ],
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: const Color(0xFF03C988),
+                                    );
+                                  },
+                                  itemCount: numbers.length,
+                                );
+                              } else {
+                                return const CircularProgressIndicator();
+                              }
+                            },
                           ),
-                          onPressed: onPressed,
-                          child: const Icon(Icons.navigate_next, size: 50,),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 24,),
+                    Container(
+                      height: 100,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Column(
+                            children: [
+                              buildContainerRoom(text: "- Available", color: const Color(0xFF4C6793)),
+                              buildContainerRoom(text: "- Non avaliable", color: const Color(0xFFDC0000)),
+                              buildContainerRoom(text: "- Selected", color: const Color(0xFFEDE9D5)),
+                            ],
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: const Color(0xFF03C988),
+                            ),
+                            onPressed: onPressed,
+                            child: const Icon(Icons.navigate_next, size: 50,),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
