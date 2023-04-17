@@ -22,7 +22,7 @@ class _FilmsAvailable extends State<FilmsAvailable>{
   Widget build(BuildContext context){
 
     return Scaffold(
-      backgroundColor: const Color(0xFF4C6793),
+      backgroundColor: const Color(0xFF000000),
       appBar: AppBar(
         backgroundColor: const Color(0xFF00092C),
         centerTitle: true,
@@ -45,51 +45,83 @@ class _FilmsAvailable extends State<FilmsAvailable>{
         ),
       ),
       body: SafeArea(
-        child: FutureBuilder<List<Film>>(
-          future: filmsList,
-          builder: (context, snapshot){
-            if (snapshot.hasData) {
-              List films = snapshot.data ?? [];
-              return GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                ),
-                itemBuilder: (context, index){
-                  return Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: GridTile(
-                      child: Card(
-                        color: const Color(0xFF00092C),
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: SizedBox(
-                                  width: 200,
-                                  child: InkWell(
-                                    child: Image.network(films[index].thumbLink),
-                                    onTap: () => onTap(film: films[index]),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              buildText(text: films[index].name, size: 24, color:  const Color(0xFFFCFFE7)),
-                            ],
-                          ),
-                        ),
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Container(
+                height: 800,
+                width: 500,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child:
+                    Container(
+                      height: 800,
+                      child: FutureBuilder <List<Film>>(
+                        future: filmsList,
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            List<Film> films = snapshot.data ?? [];
+                            return ListView.separated(
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: films.length,
+                                separatorBuilder: (context, index) {return const SizedBox(width: 18,);},
+                                itemBuilder: (context, index) {
+                                  return SizedBox(
+                                    height: 400,
+                                    width: 300,
+                                    child: Column(
+                                      children: [
+                                        InkWell(
+                                          child: Card(
+                                            shape: RoundedRectangleBorder(
+                                              side: const BorderSide(
+                                                color: Color(0xFFEEEEEE),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius: BorderRadius.circular(12.0),
+                                            ),
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(12),
+                                              child: Image.network(
+                                                height: 400,
+                                                width: 300,
+                                                films[index].thumbLink,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          onTap: () => onTap(film: films[index]),
+                                        ),
+                                        SizedBox(
+                                          height: 200,
+                                          width: 300,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              buildText(text: films[index].duration, size: 24, color: const Color(0xFFEEEEEE)),
+                                              buildText(text: films[index].name, size: 32, color: const Color(0xFFEEEEEE)),
+                                              buildText(text: films[index].gender, size: 32, color: const Color(0xFFEEEEEE)),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }
+                            );
+                          } else {
+                            return const Center(child: CircularProgressIndicator(),);
+                          }
+                        },
                       ),
                     ),
-                  );
-                },
-                itemCount: films.length,
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -125,6 +157,7 @@ class _FilmsAvailable extends State<FilmsAvailable>{
       textAlign: TextAlign.center,
       style: TextStyle(
         fontSize: size,
+        fontWeight: FontWeight.bold,
         color: color,
       ),
     );
