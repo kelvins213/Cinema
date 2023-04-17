@@ -106,11 +106,33 @@ class _FilmsAvailable extends State<FilmsAvailable>{
                                             height: 200,
                                             width: 300,
                                             child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
-                                                buildText(text: films[index].duration, size: 24, color: const Color(0xFFEEEEEE)),
+                                               Row(
+                                                 mainAxisAlignment: MainAxisAlignment.center,
+                                                 children: [
+                                                   const Icon(Icons.watch_later_outlined, color: Color(0xFFEEEEEE),),
+                                                   const SizedBox(width: 4,),
+                                                   buildText(text: films[index].duration, size: 24, color: const Color(0xFFEEEEEE)),
+                                                 ],
+                                               ),
+                                                const SizedBox(height: 12,),
                                                 buildText(text: films[index].name, size: 32, color: const Color(0xFFEEEEEE)),
-                                                buildText(text: films[index].gender, size: 32, color: const Color(0xFFEEEEEE)),
+                                                const SizedBox(height: 12,),
+                                                Card(
+                                                  shape: RoundedRectangleBorder(
+                                                    side: const BorderSide(
+                                                      color: Color(0xFF000000),
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius: BorderRadius.circular(12.0),
+                                                  ),
+                                                  color: Colors.grey.shade800,
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.all(9.2),
+                                                    child: buildText(text: films[index].gender, size: 18, color: const Color(0xFFEEEEEE)),
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ),
