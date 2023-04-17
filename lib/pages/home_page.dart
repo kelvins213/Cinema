@@ -1,122 +1,64 @@
-import 'package:cinema/data/bd/cinema_bd.dart';
-import 'package:cinema/domain/cinema.dart';
-import 'package:cinema/widget/booking.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cinema/pages/costumer_profile.dart';
+import 'package:cinema/pages/fims_avaliable.dart';
+import 'package:cinema/pages/preview.dart';
+import 'package:cinema/widget/reservs.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class CinemaHomePage extends StatefulWidget {
+  const CinemaHomePage({Key? key}) : super(key: key);
 
-  const CinemaHomePage({Key? key,}) : super(key:key);
   @override
-  _CinemaHomePage createState() => _CinemaHomePage();
+  State<CinemaHomePage> createState() => _CinemaHomePageState();
 }
 
-class _CinemaHomePage extends State<CinemaHomePage>{
+class _CinemaHomePageState extends State<CinemaHomePage> {
 
-  List<Film> films = CinemaContents.films;
+  int currentlyPage = 0;
+  List <dynamic> pages = [
+    const FilmsAvailable(),
+    const Previews(),
+    const Bookings(),
+    const CostumerProfile(),
+  ];
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        backgroundColor: const Color(0xFF000000),
-        child: ListView(
-          children: [
-            DrawerHeader(
-              child: Container(
-                height: 100,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Booking Stuff",
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Color(0xFFEEEEEE),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+      body: pages[currentlyPage],
+      bottomNavigationBar: Container(
+        color: const Color(0xFF000000),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: const Color(0xFF000000), width: 1.0),
+              borderRadius: BorderRadius.circular(6.0),
+              color: const Color(0xFFEEEEEE).withOpacity(0.3),
             ),
-            ListTile(
-              title: ElevatedButton(
-                onPressed: onPressed,
-                child: buildText(text: "Bookings", size: 24, color: const Color(0xFFEEEEEE)),
-              ),
+            child: GNav(
+              backgroundColor: const Color(0xFFEEEEEE).withOpacity(0.2),
+              color: const Color(0xFF000000),
+              activeColor: const Color(0xFFEEEEEE),
+              tabBackgroundColor: Colors.grey.shade800,
+              padding: const EdgeInsets.all(12),
+              tabMargin: const EdgeInsets.all(12),
+              gap: 8,
+              tabs: const <GButton>[
+                GButton(icon: Icons.theaters_outlined, text: 'Movies'),
+                GButton(icon: Icons.schedule, text: 'Previews',),
+                GButton(icon: Icons.menu_book, text: 'Bookings',),
+                GButton(icon: Icons.settings, text: 'Profile',),
+              ],
+              onTabChange: (index){
+                setState(() {
+                  currentlyPage = index;
+                });
+              },
             ),
-          ],
-        ),
-      ),
-      backgroundColor: const Color(0xFF4C6793),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF00092C),
-        centerTitle: true,
-        title: buildText(text: "Films Available", size: 24, color: const Color(0xFFEEEEEE)),
-      ),
-      body: SafeArea(
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
           ),
-          itemBuilder: (context, index){
-            return Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: GridTile(
-                child: Card(
-                  color: const Color(0xFF00092C),
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: SizedBox(
-                            width: 200,
-                            child: InkWell(
-                              child: Image.network(films[index].thumbLink),
-                              onTap: () => onTap(film: films[index]),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        buildText(text: films[index].film, size: 24, color:  const Color(0xFFFCFFE7)),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-          itemCount: films.length,
         ),
       ),
     );
   }
-
-  onPressed(){}
-
-  onTap({required Film film}){
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) {
-            return BookingFilm(film: film);
-          },
-      ),
-    );
-  }
-
-  buildText({required String text, required double size, required Color color}){
-    return Text(
-      text,
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        fontSize: size,
-        color: color,
-      ),
-    );
-  }
-
 }

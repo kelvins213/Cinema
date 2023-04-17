@@ -1,4 +1,8 @@
+import 'package:cinema/data/api/post/bookings.dart';
+import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
 import 'package:cinema/pages/home_page.dart';
+import 'package:cinema/widget/reservs.dart';
+import 'package:cinema/pages/fims_avaliable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -53,7 +57,7 @@ class _CinemaFood extends State<CinemaFood>{
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   const Card(
-                    color: Color(0xFFDC0000),
+                    color: Color(0xFFEDE9D5),
                     child: Icon(
                       Icons.event_seat,
                       size: 50,
@@ -89,17 +93,22 @@ class _CinemaFood extends State<CinemaFood>{
                 height: 600,
                 width: 298,
                 child: Card(
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(
+                      color: Color(0xFF000000),
+                      width: 1.2,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.network("https://st2.depositphotos.com/5823990/11304/i/450/depositphotos_113044302-stock-photo-glass-bowl-with-popcorn-isolated.jpg", width: 158,),
                         ],
                       ),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -190,7 +199,6 @@ class _CinemaFood extends State<CinemaFood>{
                           ),
                         ],
                       ),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -220,7 +228,7 @@ class _CinemaFood extends State<CinemaFood>{
                 ),
               ),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(
@@ -282,12 +290,11 @@ class _CinemaFood extends State<CinemaFood>{
         }
       }
       widget.totalPrice = (totalPopcornPrice + totalSodaPrice + (chairPrice * chairs.length));
-
-      print(totalPrice);
     });
   }
 
   showConfirmation(){
+    //onPressed: _isButtonDisabled ? null : _incrementCounter,
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -324,9 +331,18 @@ class _CinemaFood extends State<CinemaFood>{
                         backgroundColor: const Color(0xFFDC0000),
                       ),
                     ),
+
+                    //onPressed: _isButtonDisabled ? null : _incrementCounter,
                     ElevatedButton(
                       child: buildText(text: "Ok", size: 24, color: const Color(0xFFEEEEEE)),
-                      onPressed: () {
+                      onPressed: () async {
+
+                        await BookingSharedPreferencesHelper().storeFood(quantPopkorn: (totalPopcornPrice/5).ceil(), quantSoda: (totalSodaPrice/2).ceil());
+                        await Booking().createBooking();
+                        await Booking().setWatch();
+                        await Booking().setFood();
+
+                        Navigator.of(context).popUntil((route) => route.isFirst); //it gets ride of showDialogue page
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
