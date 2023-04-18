@@ -139,7 +139,7 @@ class _CinemaRoom extends State<CinemaRoom>{
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: const Color(0xFFFFFF00).withOpacity(0.9),
+                              backgroundColor: const Color(0xFFFFFF00).withOpacity(0.9),
                             ),
                             onPressed: onPressed,
                             child: const Icon(Icons.navigate_next, size: 50,),

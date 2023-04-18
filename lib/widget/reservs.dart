@@ -90,7 +90,7 @@ class _Bookings extends State<Bookings>{
                                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                             children: [
                                               const Icon(Icons.emergency_recording),
-                                              buildText(text: reservedFilms[index].name, size: 24, color: const Color(0xFF000000)),
+                                              buildText(text: reservedFilms[index].gender, size: 24, color: const Color(0xFF000000)),
                                             ],
                                           ),
                                         ),
@@ -259,7 +259,7 @@ class _Bookings extends State<Bookings>{
     //to do it, you can easyly use the FutureBuilder widget
     //remember, you must do it on food page too
 
-    CostumerReservs r = CostumerReservs(cod: reserv.cod, name: reserv.name, date: reserv.date, time: reserv.time, thumbLink: reserv.thumbLink, synopsis: reserv.synopsis, room: reserv.room, chairs: reserv.chairs);
+    CostumerReservs r = CostumerReservs(duration: reserv.duration, gender: reserv.gender, cod: reserv.cod, name: reserv.name, date: reserv.date, time: reserv.time, thumbLink: reserv.thumbLink, synopsis: reserv.synopsis, room: reserv.room, chairs: reserv.chairs);
     await DeleteBookingSharedPreferencesHelper().storeBookInfos(reserv: r);
     await DeleteBookingSharedPreferencesHelper().getBookInfo();
 

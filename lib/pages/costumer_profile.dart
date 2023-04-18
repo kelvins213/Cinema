@@ -46,7 +46,6 @@ class _CostumerProfileState extends State<CostumerProfile> {
                             backgroundImage: NetworkImage("https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg"),
                             child: Text(''),
                           ),
-                          buildText(text: cos.name, size: 24, color: const Color(0xFFEEEEEE)),
                           buildText(text: cos.email, size: 24, color: const Color(0xFFEEEEEE)),
                           buildText(text: cos.password, size: 24, color: const Color(0xFFEEEEEE)),
                         ],

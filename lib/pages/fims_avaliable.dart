@@ -2,7 +2,7 @@ import 'package:cinema/data/api/get/films.dart';
 import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
 import 'package:cinema/data/shared_preferences/costumer_shared_preferences.dart';
 import 'package:cinema/domain/film.dart';
-import 'package:cinema/pages/reservs.dart';
+import 'package:cinema/widget/reservs.dart';
 import 'package:cinema/pages/login_page.dart';
 import 'package:cinema/widget/booking.dart';
 import 'package:flutter/material.dart';
@@ -40,12 +40,12 @@ class _FilmsAvailable extends State<FilmsAvailable>{
                 buildText(text: "Films Available", size: 24, color: const Color(0xFFEEEEEE)),
                 //move the inkwell to Account Page later
                 InkWell(
+                  onTap: onTapLogOff,
                   child: const Icon(
                     Icons.exit_to_app,
                     size: 32,
                     color: Color(0xFFFF1E1E),
                   ),
-                  onTap: onTapLogOff,
                 ),
               ],
             ),

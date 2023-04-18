@@ -33,7 +33,7 @@ class DeleteBookingSharedPreferencesHelper{
     int room = prefs.getInt("room") ?? 0;
     List<dynamic> chairs = prefs.getStringList("chairs") ?? [];
 
-    CostumerReservs reserv = CostumerReservs(cod: cod, name: film, date: date, time: time, thumbLink: "thumbLink", synopsis: "synopsis", room: room, chairs: chairs);
+    CostumerReservs reserv = CostumerReservs(cod: cod, name: film, date: date, time: time, thumbLink: "thumbLink", synopsis: "synopsis", gender: "", duration: "", room: room, chairs: chairs);
 
     return reserv;
   }

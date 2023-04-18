@@ -118,6 +118,7 @@ class _CreateAccountState extends State<CreateAccount> {
       if (accountSucceed) {
         //showDialog(),
 
+        Navigator.of(context).popUntil((route) => route.isFirst);
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return LoginPage();}));
       }
     }

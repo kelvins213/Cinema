@@ -1,7 +1,7 @@
 import 'package:cinema/data/api/post/bookings.dart';
 import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
 import 'package:cinema/pages/home_page.dart';
-import 'package:cinema/pages/reservs.dart';
+import 'package:cinema/widget/reservs.dart';
 import 'package:cinema/pages/fims_avaliable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +65,7 @@ class _CinemaFood extends State<CinemaFood>{
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     const Card(
-                      color: Color(0xFFEDE9D5),
+                      color: Color(0xFFFFD700),
                       child: Icon(
                         Icons.event_seat,
                         size: 50,
@@ -122,6 +122,7 @@ class _CinemaFood extends State<CinemaFood>{
                           children: [
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                shape: const CircleBorder(),
                                 backgroundColor: const Color(0xFF00092C),
                               ),
                               onPressed: () => onPressed(value: - popPrice, type: "popcorn", operation: "-"),
@@ -131,6 +132,7 @@ class _CinemaFood extends State<CinemaFood>{
                             ),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                shape: const CircleBorder(),
                                 backgroundColor: const Color(0xFF00092C),
                               ),
                               onPressed: () => onPressed(value: popPrice, type: "popcorn", operation: "+"),
@@ -171,6 +173,7 @@ class _CinemaFood extends State<CinemaFood>{
                           children: [
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                shape: const CircleBorder(),
                                 backgroundColor: const Color(0xFF00092C),
                               ),
                               onPressed: () => onPressed(value: - sodaPrice, type: "soda", operation: "-"),
@@ -180,6 +183,7 @@ class _CinemaFood extends State<CinemaFood>{
                             ),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                shape: const CircleBorder(),
                                 backgroundColor: const Color(0xFF00092C),
                               ),
                               onPressed: () => onPressed(value: sodaPrice, type: "soda", operation: "+"),

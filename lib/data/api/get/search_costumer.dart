@@ -13,7 +13,7 @@ class Login{
 
     Costumer costumer = await CostumerSharedPreferencesHelper().getCostumerData();
 
-    Uri url = Uri.http(baseURL, '/searchForAccount/${costumer.name}/${costumer.email}/${costumer.password}');
+    Uri url = Uri.http(baseURL, '/searchForAccount/${costumer.email}/${costumer.password}');
     Response response = await http.get(url);
 
     var json = jsonDecode(response.body);

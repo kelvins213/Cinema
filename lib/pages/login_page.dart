@@ -23,8 +23,8 @@ class _LoginPage extends State<LoginPage>{
     backgroundColor: const Color(0xFFDC0000),
     content: Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text("Name, email or password are incorrect", style: TextStyle(fontSize: 18),)
+      children: const [
+        Text("Email or password are incorrect", style: TextStyle(fontSize: 18),)
       ],
     ),
   );
@@ -32,125 +32,110 @@ class _LoginPage extends State<LoginPage>{
   Future<bool> stateLogin = CostumerSharedPreferencesHelper().getLoginState();
 
   final _formKey = GlobalKey<FormState>();
-  TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF4C6793),
-      body: ListView(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                      side: const BorderSide(
-                        color: Color(0xFF000000),
-                        width: 1.7,
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFF950101),  Color(0xFF3D0000), Color(0xFF000000)],
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: ListView(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Card(
+                      color: const Color(0xFFFFFF00).withOpacity(0.9),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                        side: const BorderSide(
+                          color: Color(0xFF000000),
+                          width: 1.7,
+                        ),
                       ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 12),
-                          AspectRatio(
-                            aspectRatio: 4/3,
-                            child: Image.network("https://img.freepik.com/vetores-gratis/fundo-retro-do-cinema_52683-1701.jpg", height: 172,),
-                          ),
-                          SizedBox(
-                            height: 292,
-                            child: Form(
-                              key: _formKey,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  TextFormField(
-                                    controller: nameController,
-                                    decoration: const InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      labelText: "Name",
-                                    ),
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return "Input without fulfillment";
-                                      }
-                                    },
-                                  ),
-                                  TextFormField(
-                                    controller: emailController,
-                                    decoration: const InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      labelText: "Email",
-                                    ),
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return "Input without fulfillment";
-                                      }
-                                    },
-                                  ),
-                                  TextFormField(
-                                    controller: passwordController,
-                                    decoration: const InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      labelText: "Password",
-                                    ),
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return "Input without fulfillment";
-                                      }
-                                    },
-                                  ),
-                                ],
-                              ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 12),
+                            AspectRatio(
+                              aspectRatio: 4/3,
+                              child: Image.network("https://img.freepik.com/vetores-gratis/fundo-retro-do-cinema_52683-1701.jpg", height: 172,),
                             ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              //do it here
-                              MouseRegion(
-                                onEnter: (event){
-                                  setState(() {
-                                    hover = false;
-                                  });
-                                },
-                                onExit: (event){
-                                  setState(() {
-                                    hover = true;
-                                  });
-                                },
-                                child: InkWell(
-                                  child:hover==true? buildTextUnderlined(text: "create account", size: 18, color: colorExit) : buildTextUnderlined(text: "create account", size: 18, color: colorEnter),
-                                  onTap: onTap,
+                            SizedBox(
+                              height: 292,
+                              child: Form(
+                                key: _formKey,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    TextFormField(
+                                      controller: emailController,
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        labelText: "Email",
+                                      ),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Input without fulfillment";
+                                        }
+                                      },
+                                    ),
+                                    TextFormField(
+                                      keyboardType: TextInputType.emailAddress,
+                                      controller: passwordController,
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        labelText: "Password",
+                                      ),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Input without fulfillment";
+                                        }
+                                      },
+                                    ),
+                                  ],
                                 ),
                               ),
-                              ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color(0xFF00092C),
-                                  ),
-                                  onPressed: onPressed,
-                                  child: buildText(text: "Login", size: 18, color: const Color(0xFFEEEEEE))
-                              ),
-                            ],
-                          ),
-                        ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                InkWell(
+                                  child: buildTextUnderlined(text: "create account", size: 18, color: colorExit),
+                                  onTap: onTap,
+                                ),
+                                ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color(0xFF00092C),
+                                    ),
+                                    onPressed: onPressed,
+                                    child: buildText(text: "Login", size: 18, color: const Color(0xFFEEEEEE))
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -178,7 +163,7 @@ class _LoginPage extends State<LoginPage>{
 
   onPressed() async {
     if (_formKey.currentState!.validate()) {
-      final costumer = Costumer(name: nameController.text, email: emailController.text, password: passwordController.text, logged: true);
+      final costumer = Costumer(name: '', email: emailController.text, password: passwordController.text, logged: true);
       await CostumerSharedPreferencesHelper.storeCostumerData(costumer: costumer);
       bool logged = await Login().searchForAccount();
       await CostumerSharedPreferencesHelper().storeLoginState(logged: logged);
