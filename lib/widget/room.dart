@@ -40,6 +40,8 @@ class _CinemaRoom extends State<CinemaRoom>{
   Film get film => widget.film;
 
   Widget build(BuildContext context){
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -63,25 +65,28 @@ class _CinemaRoom extends State<CinemaRoom>{
                 child: Column(
                   children: [
                     Container(
-                      height: 600,
+                      height: 620,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           SizedBox(
-                            width: 300,
-                            height: 30,
+                            width: width,
+                            height: 90,
                             child: Container(
-                              decoration: const BoxDecoration(
-                                color: Color(0xFF4C6793),
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(360),
-                                  topRight: Radius.circular(360),
-                                  bottomLeft: Radius.circular(40),
-                                  bottomRight: Radius.circular(40),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF4C6793),
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                      film.thumbLink
+                                  ),
+                                  fit: BoxFit.fitWidth,
                                 ),
-                              ),
-                              child: const Icon(
-                                Icons.videocam
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(70),
+                                  topRight: Radius.circular(70),
+                                  bottomLeft: Radius.circular(20),
+                                  bottomRight: Radius.circular(20),
+                                ),
                               ),
                             ),
                           ),
@@ -134,7 +139,7 @@ class _CinemaRoom extends State<CinemaRoom>{
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: const Color(0xFF03C988),
+                              primary: const Color(0xFFFFFF00).withOpacity(0.9),
                             ),
                             onPressed: onPressed,
                             child: const Icon(Icons.navigate_next, size: 50,),

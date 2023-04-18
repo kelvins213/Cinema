@@ -160,16 +160,6 @@ class _FilmsAvailable extends State<FilmsAvailable>{
     );
   }
 
-  onTapBookings() async {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context){
-              return const Bookings();
-            }),
-    );
-  }
-
   onTap({required Film film}) async {
 
     await BookingSharedPreferencesHelper().storeFilmInfos(filmName: film.name, roomNumber: film.room);
