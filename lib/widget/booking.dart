@@ -43,11 +43,11 @@ class _BookingFilm extends State<BookingFilm> {
                       border: Border.all(color: const Color(0xFFEEEEEE), width: 1.2),
                       borderRadius: BorderRadius.circular(24),
                       image: DecorationImage(
-                      image: NetworkImage(
-                          film.thumbLink
+                        image: NetworkImage(
+                            film.thumbLink
+                        ),
+                        fit: BoxFit.cover,
                       ),
-                      fit: BoxFit.cover,
-                    ),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
