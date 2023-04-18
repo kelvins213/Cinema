@@ -127,9 +127,9 @@ class _CinemaRoom extends State<CinemaRoom>{
                         children: [
                           Column(
                             children: [
-                              buildContainerRoom(text: "- Available", color: const Color(0xFF4C6793)),
+                              buildContainerRoom(text: "- Available", color: const Color(0xFFEEEEEE)),
                               buildContainerRoom(text: "- Non avaliable", color: const Color(0xFFDC0000)),
-                              buildContainerRoom(text: "- Selected", color: const Color(0xFFEDE9D5)),
+                              buildContainerRoom(text: "- Selected", color: const Color(0xFFFFFF00)),
                             ],
                           ),
                           ElevatedButton(
@@ -160,7 +160,7 @@ class _CinemaRoom extends State<CinemaRoom>{
   generateColorList({required List<dynamic> chairsBooked}) {
 
     for (var i = 0; i < 80; i++) {
-      colors.add(const Color(0xFF4C6793));
+      colors.add(const Color(0xFFEDE9D5)); //0xFFEDE9D5
     }
 
     for (var id in chairsBooked) {
@@ -175,11 +175,11 @@ class _CinemaRoom extends State<CinemaRoom>{
 
   onTap({required int chairIndex}){
     setState(() {
-      if (colors[chairIndex] == const Color(0xFF4C6793)) {
-        colors[chairIndex] = const Color(0xFFEDE9D5);
+      if (colors[chairIndex] == const Color(0xFFEDE9D5)) {
+        colors[chairIndex] = const Color(0xFFFFFF00);
       } else {
-        if (colors[chairIndex] == const Color(0xFFEDE9D5)) {
-          colors[chairIndex] = const Color(0xFF4C6793);
+        if (colors[chairIndex] == const Color(0xFFFFFF00)) {
+          colors[chairIndex] = const Color(0xFFEDE9D5);
         }
       }
     });
@@ -189,7 +189,7 @@ class _CinemaRoom extends State<CinemaRoom>{
     List<int> chairsIndex = <int>[];
 
     for (var i = 0; i < colors.length; i++) {
-      if (colors[i] == const Color(0xFFEDE9D5)) {
+      if (colors[i] == const Color(0xFFFFFF00)) {
         chairsIndex.add(i + 1);
       }
     }

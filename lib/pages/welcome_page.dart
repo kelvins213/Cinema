@@ -35,7 +35,11 @@ class _WelcomePageState extends State<WelcomePage> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFCFFE7),
+                      gradient: const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Color(0xFFFFD700),  Color(0xFFFFFF00), Color(0xFFF0E68C)],
+                      ),
                       border: Border.all(
                         width: 1.7,
                       ),
@@ -51,7 +55,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           width: MediaQuery.of(context).size.width - 200,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF03C988),
+                              backgroundColor: const Color(0xFF00235B),
                               side: const BorderSide(width: 1.2),
                             ),
                             onPressed: onPressed,
