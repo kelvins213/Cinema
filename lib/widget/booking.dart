@@ -107,6 +107,7 @@ class _BookingFilm extends State<BookingFilm> {
                           children: [
                             buildCard(text: film.gender, icon: Icons.history_edu_outlined),
                             buildCard(text: film.date, icon: Icons.date_range),
+                            buildCard(text: film.time, icon: Icons.hourglass_bottom_outlined),
                             buildCard(text: film.room, icon: Icons.living),
                           ],
                         ),
