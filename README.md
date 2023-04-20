@@ -1,4 +1,2 @@
-# Cinema
-
-Cinema-api Branch:
+# Cinema App
 
