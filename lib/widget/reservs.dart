@@ -4,6 +4,7 @@ import 'package:cinema/data/shared_preferences/delete_booking_shared_preferences
 import 'package:cinema/domain/bookings.dart';
 import 'package:cinema/domain/food.dart';
 import 'package:flutter/material.dart';
+import 'package:list_wheel_scroll_view_nls/list_wheel_scroll_view_nls.dart';
 
 class Bookings extends StatefulWidget {
 
