@@ -103,11 +103,30 @@ class _Bookings extends State<Bookings>{
                                   width: width * 0.85 - 154 - 18,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: [
                                       buildText(text: reservedFilms[index].date, size: 18, color: const Color(0xFF000000)),
                                       buildText(text: reservedFilms[index].time, size: 18, color: const Color(0xFF000000)),
                                       buildChairText(chairs: reservedFilms[index].chairs, size: 18, color: const Color(0xFF000000)),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: const Color(0xFFFF0303),
+                                                shape: const CircleBorder(),
+                                              ),
+                                                onPressed: () => onPressed(reserv: reservedFilms[index]),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(12.0),
+                                                  child: Icon(Icons.restore_from_trash),
+                                                ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
