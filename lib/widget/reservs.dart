@@ -97,6 +97,7 @@ class _Bookings extends State<Bookings>{
                                     children: [
                                       buildScrollView(icon: Icons.date_range, text: reservedFilms[index].date, size: 24, color:  const Color(0xFF000000)),
                                       buildScrollView(icon: Icons.hourglass_bottom, text: reservedFilms[index].time, size: 24, color:  const Color(0xFF000000)),
+                                      buildScrollView(icon: Icons.room, text: reservedFilms[index].room, size: 24, color: const Color(0xFF000000)),
                                       buildScrollView(icon: Icons.living, text: reservedFilms[index].chairs, size: 24, color:  const Color(0xFF000000)),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
@@ -222,7 +223,7 @@ class _Bookings extends State<Bookings>{
 
   buildScrollView({required IconData icon, required dynamic text, required double size, required Color color}){
     return SizedBox(
-      height: 70,
+      height: 50,
       width: 170,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
