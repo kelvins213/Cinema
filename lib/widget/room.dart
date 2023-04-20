@@ -106,6 +106,13 @@ class _CinemaRoom extends State<CinemaRoom>{
                                     return InkWell(
                                       onTap: () => onTap(chairIndex: index),
                                       child: Card(
+                                        shape: RoundedRectangleBorder(
+                                          side: const BorderSide(
+                                            color: Color(0xFF000000),
+                                            width: 1.0,
+                                          ),
+                                          borderRadius: BorderRadius.circular(50.0),
+                                        ),
                                         color: colors[index],
                                         child: const Icon(
                                             Icons.event_seat

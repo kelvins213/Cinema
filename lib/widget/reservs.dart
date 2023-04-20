@@ -29,6 +29,10 @@ class _Bookings extends State<Bookings>{
                       ];*/
 
   Widget build(BuildContext context){
+
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -43,25 +47,84 @@ class _Bookings extends State<Bookings>{
           backgroundColor: const Color(0xFF950101),
           title: buildText(text: "Bookings", size: 24, color: const Color(0xFFFEFCF3)),
         ),
-        body: FutureBuilder<List<CostumerReservs>>(
-          future: reservs,
-          builder: (context, snapshot){
-            if (snapshot.hasData) {
-              List<CostumerReservs> reservedFilms = snapshot.data ?? [];
-              return ListWheelScrollView(
-                itemExtent: 300,
-                physics: const FixedExtentScrollPhysics(),
-                children: [
-                  Image.network(reservedFilms[0].thumbLink, width: 400,),
-                  Image.network(reservedFilms[1].thumbLink, width: 400,),
-                  Image.network(reservedFilms[2].thumbLink, width: 400,),
-                  Image.network(reservedFilms[3].thumbLink, width: 400,),
-                ],
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator(),);
-            }
-          },
+        body: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: FutureBuilder<List<CostumerReservs>>(
+            future: reservs,
+            builder: (context, snapshot){
+              if (snapshot.hasData) {
+                List<CostumerReservs> reservedFilms = snapshot.data ?? [];
+                return ListView.separated(
+                  separatorBuilder: (context, index){
+                    return const SizedBox(height: 32,);
+                  },
+                  itemBuilder: (context, index){
+                    return Column(
+                      children: [
+
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(18),
+                              topRight: Radius.circular(18),
+                              bottomRight: Radius.circular(18),
+                              bottomLeft: Radius.circular(52),
+                            ),
+                            color: Colors.black.withOpacity(0.7),
+                          ),
+                          width: width * 0.85,
+                          height: height * 0.4,
+                          child: Container(
+                            margin: const EdgeInsets.fromLTRB(18, 18, 0, 0),
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(18),
+                                topRight: Radius.circular(18),
+                                topLeft: Radius.circular(18),
+                              ),
+                              color: Colors.white.withOpacity(0.7),
+                            ),
+                            child: Row(
+                              children: [
+                                Column(
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(12),
+                                      child: Image.network(
+                                        height: height * 0.4 - 18,
+                                        width: 154,
+                                        reservedFilms[index].thumbLink,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: width * 0.85 - 154 - 18,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      buildText(text: reservedFilms[index].date, size: 18, color: const Color(0xFF000000)),
+                                      buildText(text: reservedFilms[index].time, size: 18, color: const Color(0xFF000000)),
+                                      buildChairText(chairs: reservedFilms[index].chairs, size: 18, color: const Color(0xFF000000)),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                  itemCount: reservedFilms.length,
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator(),);
+              }
+            },
+          ),
         ),
       ),
     );
@@ -170,3 +233,15 @@ class _Bookings extends State<Bookings>{
     );
   }
 }
+
+/*
+ListWheelScrollView(
+                itemExtent: 300,
+                physics: const FixedExtentScrollPhysics(),
+                children: [
+                  Image.network(reservedFilms[0].thumbLink, width: 400,),
+                  Image.network(reservedFilms[1].thumbLink, width: 400,),
+                  Image.network(reservedFilms[2].thumbLink, width: 400,),
+                ],
+              );
+*/
