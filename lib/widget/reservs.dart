@@ -20,16 +20,8 @@ class _Bookings extends State<Bookings>{
   Future<Food> foodReserved = CostumerBookings().getFood();
   List<IconData> icons = [Icons.date_range, Icons.hourglass_bottom, Icons.living];
 
-  /*
-  *
-                      List<dynamic> filmAtributes = <dynamic> [
-                        reservedFilms[index].date,
-                        reservedFilms[index].time,
-                        reservedFilms[index].room,
-                      ];*/
 
   Widget build(BuildContext context){
-
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
@@ -61,16 +53,14 @@ class _Bookings extends State<Bookings>{
                   itemBuilder: (context, index){
                     return Column(
                       children: [
-
                         Container(
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(18),
                               topRight: Radius.circular(18),
-                              bottomRight: Radius.circular(18),
                               bottomLeft: Radius.circular(52),
                             ),
-                            color: Colors.black.withOpacity(0.7),
+                            color: Colors.black,
                           ),
                           width: width * 0.85,
                           height: height * 0.4,
@@ -105,9 +95,9 @@ class _Bookings extends State<Bookings>{
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: [
-                                      buildText(text: reservedFilms[index].date, size: 18, color: const Color(0xFF000000)),
-                                      buildText(text: reservedFilms[index].time, size: 18, color: const Color(0xFF000000)),
-                                      buildChairText(chairs: reservedFilms[index].chairs, size: 18, color: const Color(0xFF000000)),
+                                      buildScrollView(icon: Icons.date_range, text: reservedFilms[index].date, size: 24, color:  const Color(0xFF000000)),
+                                      buildScrollView(icon: Icons.hourglass_bottom, text: reservedFilms[index].time, size: 24, color:  const Color(0xFF000000)),
+                                      buildScrollView(icon: Icons.living, text: reservedFilms[index].chairs, size: 24, color:  const Color(0xFF000000)),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Row(
@@ -226,6 +216,28 @@ class _Bookings extends State<Bookings>{
         fontWeight: FontWeight.w500,
         fontSize: size,
         color: color,
+      ),
+    );
+  }
+
+  buildScrollView({required IconData icon, required dynamic text, required double size, required Color color}){
+    return SizedBox(
+      height: 70,
+      width: 170,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Icon(icon, size: 30,),
+                const SizedBox(width: 6,),
+                buildText(text: text, size: size, color: color)
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
