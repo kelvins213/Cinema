@@ -36,23 +36,26 @@ class _CinemaHomePageState extends State<CinemaHomePage> {
               borderRadius: BorderRadius.circular(12.0),
               color: const Color(0xFFEEEEEE).withOpacity(0.6),
             ),
-            child: GNav(
-              activeColor: const Color(0xFFEEEEEE),
-              tabBackgroundColor: Colors.grey.shade800,
-              padding: const EdgeInsets.all(12),
-              tabMargin: const EdgeInsets.all(12),
-              gap: 8,
-              tabs: const <GButton>[
-                GButton(icon: Icons.theaters_outlined, text: 'Movies'),
-                GButton(icon: Icons.schedule, text: 'Previews',),
-                GButton(icon: Icons.menu_book, text: 'Bookings',),
-                GButton(icon: Icons.settings, text: 'Profile',),
-              ],
-              onTabChange: (index){
-                setState(() {
-                  currentlyPage = index;
-                });
-              },
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: GNav(
+                activeColor: const Color(0xFFEEEEEE),
+                tabBackgroundColor: Colors.grey.shade800,
+                padding: const EdgeInsets.all(12),
+                tabMargin: const EdgeInsets.all(12),
+                gap: 8,
+                tabs: const <GButton>[
+                  GButton(icon: Icons.theaters_outlined, text: 'Movies'),
+                  GButton(icon: Icons.schedule, text: 'Previews',),
+                  GButton(icon: Icons.menu_book, text: 'Bookings',),
+                  GButton(icon: Icons.settings, text: 'Profile',),
+                ],
+                onTabChange: (index){
+                  setState(() {
+                    currentlyPage = index;
+                  });
+                },
+              ),
             ),
           ),
         ),

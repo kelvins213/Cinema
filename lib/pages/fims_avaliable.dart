@@ -67,66 +67,70 @@ class _FilmsAvailable extends State<FilmsAvailable>{
                         enlargeCenterPage: true,
                       ),
                       itemBuilder: (context, index, realIdx) {
-                        return SizedBox(
-                          child: Column(
-                            children: [
-                              InkWell(
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                      color: Color(0xFFEEEEEE),
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
-                                    child: Image.network(
-                                      height: 400,
-                                      width: 300,
-                                      films[index].thumbLink,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                onTap: () => onTap(film: films[index]),
-                              ),
-                              SizedBox(
-                                height: 200,
-                                width: 300,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        const Icon(Icons.watch_later_outlined, color: Color(0xFFEEEEEE),),
-                                        const SizedBox(width: 4,),
-                                        buildText(text: films[index].duration, size: 24, color: const Color(0xFFEEEEEE)),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 12,),
-                                    buildText(text: films[index].name, size: 32, color: const Color(0xFFEEEEEE)),
-                                    const SizedBox(height: 12,),
-                                    Card(
+                        return ListView(
+                          children: [
+                            SizedBox(
+                              child: Column(
+                                children: [
+                                  InkWell(
+                                    child: Card(
                                       shape: RoundedRectangleBorder(
                                         side: const BorderSide(
-                                          color: Color(0xFF000000),
+                                          color: Color(0xFFEEEEEE),
                                           width: 1.0,
                                         ),
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
-                                      color: Colors.grey.shade800,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(9.2),
-                                        child: buildText(text: films[index].gender, size: 18, color: const Color(0xFFEEEEEE)),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(12),
+                                        child: Image.network(
+                                          height: 400,
+                                          width: 300,
+                                          films[index].thumbLink,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                    onTap: () => onTap(film: films[index]),
+                                  ),
+                                  SizedBox(
+                                    height: 200,
+                                    width: 300,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            const Icon(Icons.watch_later_outlined, color: Color(0xFFEEEEEE),),
+                                            const SizedBox(width: 4,),
+                                            buildText(text: films[index].duration, size: 24, color: const Color(0xFFEEEEEE)),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 12,),
+                                        buildText(text: films[index].name, size: 32, color: const Color(0xFFEEEEEE)),
+                                        const SizedBox(height: 12,),
+                                        Card(
+                                          shape: RoundedRectangleBorder(
+                                            side: const BorderSide(
+                                              color: Color(0xFF000000),
+                                              width: 1.0,
+                                            ),
+                                            borderRadius: BorderRadius.circular(12.0),
+                                          ),
+                                          color: Colors.grey.shade800,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(9.2),
+                                            child: buildText(text: films[index].gender, size: 18, color: const Color(0xFFEEEEEE)),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         );
                       });
                 } else {
