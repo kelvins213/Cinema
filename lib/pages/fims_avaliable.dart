@@ -2,10 +2,10 @@ import 'package:cinema/data/api/get/films.dart';
 import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
 import 'package:cinema/data/shared_preferences/costumer_shared_preferences.dart';
 import 'package:cinema/domain/film.dart';
-import 'package:cinema/widget/reservs.dart';
 import 'package:cinema/pages/login_page.dart';
 import 'package:cinema/widget/booking.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class FilmsAvailable extends StatefulWidget {
 
@@ -15,7 +15,7 @@ class FilmsAvailable extends StatefulWidget {
 }
 
 class _FilmsAvailable extends State<FilmsAvailable>{
-
+  FixedExtentScrollController scrollController = FixedExtentScrollController();
   Future<List<Film>> filmsList = FilmsInContext().getFilmsAvailable();
 
   @override
@@ -52,108 +52,90 @@ class _FilmsAvailable extends State<FilmsAvailable>{
           ),
         ),
         body: SafeArea(
-          child: ListView(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Container(
-                  height: 800,
-                  width: 500,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child:
-                      Container(
+          child: Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: FutureBuilder <List<Film>>(
+              future: filmsList,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<Film> films = snapshot.data ?? [];
+                  return CarouselSlider.builder(
+                      itemCount: films.length,
+                      options: CarouselOptions(
                         height: 800,
-                        child: FutureBuilder <List<Film>>(
-                          future: filmsList,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              List<Film> films = snapshot.data ?? [];
-                              return ListView.separated(
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: films.length,
-                                  separatorBuilder: (context, index) {return const SizedBox(width: 18,);},
-                                  itemBuilder: (context, index) {
-                                    return SizedBox(
+                        autoPlay: true,
+                        enlargeCenterPage: true,
+                      ),
+                      itemBuilder: (context, index, realIdx) {
+                        return SizedBox(
+                          child: Column(
+                            children: [
+                              InkWell(
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                      color: Color(0xFFEEEEEE),
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.network(
                                       height: 400,
                                       width: 300,
-                                      child: Column(
-                                        children: [
-                                          InkWell(
-                                            child: Card(
-                                              shape: RoundedRectangleBorder(
-                                                side: const BorderSide(
-                                                  color: Color(0xFFEEEEEE),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius: BorderRadius.circular(12.0),
-                                              ),
-                                              child: ClipRRect(
-                                                borderRadius: BorderRadius.circular(12),
-                                                child: Image.network(
-                                                  height: 400,
-                                                  width: 300,
-                                                  films[index].thumbLink,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                            onTap: () => onTap(film: films[index]),
-                                          ),
-                                          SizedBox(
-                                            height: 200,
-                                            width: 300,
-                                            child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                               Row(
-                                                 mainAxisAlignment: MainAxisAlignment.center,
-                                                 children: [
-                                                   const Icon(Icons.watch_later_outlined, color: Color(0xFFEEEEEE),),
-                                                   const SizedBox(width: 4,),
-                                                   buildText(text: films[index].duration, size: 24, color: const Color(0xFFEEEEEE)),
-                                                 ],
-                                               ),
-                                                const SizedBox(height: 12,),
-                                                buildText(text: films[index].name, size: 32, color: const Color(0xFFEEEEEE)),
-                                                const SizedBox(height: 12,),
-                                                Card(
-                                                  shape: RoundedRectangleBorder(
-                                                    side: const BorderSide(
-                                                      color: Color(0xFF000000),
-                                                      width: 1.0,
-                                                    ),
-                                                    borderRadius: BorderRadius.circular(12.0),
-                                                  ),
-                                                  color: Colors.grey.shade800,
-                                                  child: Padding(
-                                                    padding: const EdgeInsets.all(9.2),
-                                                    child: buildText(text: films[index].gender, size: 18, color: const Color(0xFFEEEEEE)),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
+                                      films[index].thumbLink,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                onTap: () => onTap(film: films[index]),
+                              ),
+                              SizedBox(
+                                height: 200,
+                                width: 300,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        const Icon(Icons.watch_later_outlined, color: Color(0xFFEEEEEE),),
+                                        const SizedBox(width: 4,),
+                                        buildText(text: films[index].duration, size: 24, color: const Color(0xFFEEEEEE)),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 12,),
+                                    buildText(text: films[index].name, size: 32, color: const Color(0xFFEEEEEE)),
+                                    const SizedBox(height: 12,),
+                                    Card(
+                                      shape: RoundedRectangleBorder(
+                                        side: const BorderSide(
+                                          color: Color(0xFF000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius: BorderRadius.circular(12.0),
                                       ),
-                                    );
-                                  }
-                              );
-                            } else {
-                              return SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                child: const Center(child: CircularProgressIndicator()),
-                              );
-                            }
-                          },
-                        ),
-                      ),
-                  ),
-                ),
-              ),
-            ],
+                                      color: Colors.grey.shade800,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(9.2),
+                                        child: buildText(text: films[index].gender, size: 18, color: const Color(0xFFEEEEEE)),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      });
+                } else {
+                  return SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: const Center(child: CircularProgressIndicator()),
+                  );
+                }},
+            ),
           ),
         ),
       ),
