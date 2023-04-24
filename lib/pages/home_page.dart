@@ -2,6 +2,7 @@ import 'package:cinema/pages/costumer_profile.dart';
 import 'package:cinema/pages/fims_avaliable.dart';
 import 'package:cinema/pages/preview.dart';
 import 'package:cinema/widget/reservs.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
