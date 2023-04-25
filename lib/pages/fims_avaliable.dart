@@ -2,6 +2,7 @@ import 'package:cinema/data/api/get/films.dart';
 import 'package:cinema/data/shared_preferences/booking_shared_preferences.dart';
 import 'package:cinema/data/shared_preferences/costumer_shared_preferences.dart';
 import 'package:cinema/domain/film.dart';
+import 'package:cinema/pages/costumer_profile.dart';
 import 'package:cinema/pages/login_page.dart';
 import 'package:cinema/widget/booking.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,9 @@ class _FilmsAvailable extends State<FilmsAvailable>{
 
   @override
   Widget build(BuildContext context){
+
+    double width = MediaQuery.of(context).size.width;
+
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -39,13 +43,26 @@ class _FilmsAvailable extends State<FilmsAvailable>{
               children: [
                 buildText(text: "Films Available", size: 24, color: const Color(0xFFEEEEEE)),
                 //move the inkwell to Account Page later
-                InkWell(
-                  onTap: onTapLogOff,
-                  child: const Icon(
-                    Icons.exit_to_app,
-                    size: 32,
-                    color: Color(0xFFFF1E1E),
-                  ),
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: onTapProfile,
+                      child: const Icon(
+                        Icons.account_circle_outlined,
+                        size: 32,
+                        color: Color(0xFFF7D060),
+                      ),
+                    ),
+                    const SizedBox(width: 12,),
+                    InkWell(
+                      onTap: onTapLogOff,
+                      child: const Icon(
+                        Icons.exit_to_app,
+                        size: 32,
+                        color: Color(0xFFFF1E1E),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -169,6 +186,17 @@ class _FilmsAvailable extends State<FilmsAvailable>{
         fontWeight: FontWeight.bold,
         color: color,
       ),
+    );
+  }
+
+  onTapProfile() async {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) {
+              return const CostumerProfile();
+            }
+        ),
     );
   }
 
